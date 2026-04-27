@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unity Prism</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07080f;--surface:#0d0f1a;--s2:#131627;--s3:#181c2e;
+  --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.11);
+  --text:#e2e4f0;--muted:#5a6080;--muted2:#8890b0;
+  --sdk:#3b82f6;--engine:#f59e0b;--analytics:#f59e0b;
+  --levelplay:#06b6d4;--vector:#8b5cf6;--mmp:#ec4899;--acquire:#f97316;
+  --green:#10b981;--red:#ef4444;--amber:#f59e0b;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(139,92,246,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(139,92,246,.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0}
+.orb{position:fixed;border-radius:50%;filter:blur(130px);pointer-events:none;z-index:0}
+.orb1{width:600px;height:600px;background:rgba(139,92,246,.06);top:-200px;right:-150px}
+.orb2{width:400px;height:400px;background:rgba(6,182,212,.04);bottom:-100px;left:-100px}
+.app{position:relative;z-index:1}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:56px;border-bottom:1px solid var(--border);background:rgba(7,8,15,.9);backdrop-filter:blur(16px);position:sticky;top:0;z-index:200}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.1em;display:flex;align-items:center;gap:10px;color:#fff}
+.logo-gem{width:20px;height:20px;background:linear-gradient(135deg,var(--vector),var(--levelplay));border-radius:3px;transform:rotate(12deg);flex-shrink:0}
+.nav-tabs{display:flex;gap:2px}
+.tab{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:3px;cursor:pointer;color:var(--muted);border:none;background:none;transition:all .15s}
+.tab:hover{color:var(--text);background:rgba(255,255,255,.04)}
+.tab.active{color:#fff;background:rgba(139,92,246,.15);border:1px solid rgba(139,92,246,.25)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.date-badge{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);border:1px solid var(--border);padding:4px 10px;border-radius:2px}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* PAGES */
+.page{display:none;padding:28px 32px 60px;min-height:calc(100vh - 56px)}
+.page.active{display:block}
+
+/* ── PAGE 1: FUNNEL ── */
+.page-header{margin-bottom:28px}
+.page-eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--vector);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.page-eyebrow::before{content:'';width:20px;height:1px;background:var(--vector)}
+.page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,4vw,52px);letter-spacing:.03em;line-height:1;color:#fff;margin-bottom:8px}
+.page-sub{font-size:13px;color:var(--muted);line-height:1.6;max-width:700px}
+
+/* Product legend */
+.prod-legend{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px}
+.pl{display:flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);background:var(--surface);border:1px solid var(--border);padding:4px 10px;border-radius:2px;letter-spacing:.06em}
+.pl-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+
+/* Funnel layout */
+.funnel-layout{display:grid;grid-template-columns:400px 1fr;gap:24px;align-items:start}
+@media(max-width:900px){.funnel-layout{grid-template-columns:1fr}}
+
+/* Cone */
+.cone-wrap{}
+.cone-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;opacity:.6}
+.phase-group{margin-bottom:2px}
+.phase-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:2px;padding-left:2px;opacity:.5}
+.layer-row{display:flex;align-items:center;gap:8px;margin-bottom:2px;cursor:pointer}
+.layer-row:hover .bar{filter:brightness(1.28)}
+.layer-row.active .bar{outline:2px solid rgba(255,255,255,.4);outline-offset:0}
+.lid{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);width:28px;text-align:right;flex-shrink:0;opacity:.4;transition:opacity .1s}
+.layer-row:hover .lid,.layer-row.active .lid{opacity:1}
+.lslot{flex:1;display:flex;justify-content:center}
+.bar{height:24px;border-radius:2px;display:flex;align-items:center;padding:0 9px;position:relative;overflow:hidden;min-width:32px;transition:filter .15s}
+.bar::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.07),transparent 55%);pointer-events:none}
+.bname{font-size:9px;font-weight:600;letter-spacing:.05em;color:rgba(255,255,255,.92);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase}
+.bvol{font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,.35);margin-left:auto;padding-left:8px;flex-shrink:0}
+.pulse-bar::after{content:'';position:absolute;right:5px;top:50%;transform:translateY(-50%);width:5px;height:5px;border-radius:50%;background:#fbbf24;animation:pulseD 2s infinite}
+@keyframes pulseD{0%,100%{box-shadow:0 0 0 0 rgba(251,191,36,.5)}50%{box-shadow:0 0 0 5px rgba(251,191,36,0)}}
+.loop-bar{border-style:dashed!important;border-width:1px 1px 1px 2px!important}
+.feedback-row{padding:6px 0 2px 36px}
+.fb-line{display:flex;align-items:center;gap:8px}
+.fb-arr{font-size:10px;color:var(--vector);font-family:'DM Mono',monospace;opacity:.8}
+.fb-dashes{flex:1;height:1px;border-top:1px dashed rgba(139,92,246,.3)}
+.fb-txt{font-size:9px;font-family:'DM Mono',monospace;color:var(--vector);opacity:.65;letter-spacing:.08em}
+.fb-sub{font-size:9px;font-family:'DM Mono',monospace;color:rgba(139,92,246,.4);margin-top:3px;line-height:1.5}
+
+/* Layer detail panel */
+.layer-detail{position:sticky;top:80px}
+.detail-empty{color:var(--muted);font-size:11px;text-align:center;padding:48px 20px;font-family:'DM Mono',monospace;letter-spacing:.05em;border:1px solid var(--border);border-radius:6px}
+.detail-card{display:none;background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.detail-card.on{display:block}
+.dc-head{padding:16px 20px 12px;border-bottom:1px solid var(--border)}
+.dc-phase{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px;opacity:.7}
+.dc-id{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:2px}
+.dc-name{font-size:17px;font-weight:700;line-height:1.2;margin-bottom:4px}
+.dc-prod{font-family:'DM Mono',monospace;font-size:10px}
+.dc-badges{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.bdg{font-size:9px;font-family:'DM Mono',monospace;padding:3px 7px;border-radius:2px;letter-spacing:.04em}
+.bdg-ns{background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.25)}
+.bdg-moat{background:rgba(139,92,246,.1);color:var(--vector);border:1px solid rgba(139,92,246,.3)}
+.bdg-loop{background:rgba(139,92,246,.06);color:var(--vector);border:1px dashed rgba(139,92,246,.3)}
+.bdg-sig-a{background:rgba(139,92,246,.08);color:var(--vector);border:1px solid rgba(139,92,246,.2)}
+.bdg-sig-b{background:rgba(59,130,246,.08);color:var(--sdk);border:1px solid rgba(59,130,246,.2)}
+.bdg-sig-ab{background:rgba(6,182,212,.06);color:var(--levelplay);border:1px solid rgba(6,182,212,.2)}
+.dc-body{padding:16px 20px}
+.sec{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:12px 0 6px}
+.sec:first-child{margin-top:0}
+.chip{background:var(--s2);border:1px solid var(--border);border-radius:3px;padding:7px 10px;margin-bottom:4px}
+.chip-lbl{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:2px}
+.chip-val{font-size:11px;color:var(--text);line-height:1.5}
+.formula{background:#070912;border-radius:3px;padding:10px 12px;font-family:'DM Mono',monospace;font-size:10px;line-height:1.65;word-break:break-all}
+.errs{display:flex;flex-direction:column;gap:4px}
+.ec{font-family:'DM Mono',monospace;font-size:9px;color:var(--red);background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);border-radius:2px;padding:4px 8px}
+.note-txt{font-size:11px;color:var(--muted);line-height:1.7;font-family:'DM Mono',monospace}
+.dg{margin-bottom:8px}
+.dg-lbl{font-size:8px;font-family:'DM Mono',monospace;letter-spacing:.13em;text-transform:uppercase;margin-bottom:4px}
+.pills{display:flex;flex-wrap:wrap;gap:3px}
+.pill{font-size:8px;font-family:'DM Mono',monospace;background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:2px 6px;color:var(--muted)}
+.vol-wrap{margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+.vol-lbl{display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:5px}
+.vol-track{height:3px;background:var(--s2);border-radius:2px;overflow:hidden}
+.vol-fill{height:100%;border-radius:2px}
+
+/* ── PAGE 2: REVENUE GAP ── */
+.rg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px}
+.metric-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:18px 20px}
+.mc-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.mc-value{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:.02em;line-height:1}
+.mc-value.red{color:var(--red)}
+.mc-value.green{color:var(--green)}
+.mc-value.white{color:#fff}
+.mc-sub{font-size:11px;color:var(--muted);margin-top:4px;font-family:'DM Mono',monospace}
+.mc-delta{font-size:10px;font-family:'DM Mono',monospace;margin-top:3px}
+.mc-delta.up{color:var(--green)}
+.mc-delta.down{color:var(--red)}
+
+/* Gap breakdown */
+.gap-section{margin-bottom:28px}
+.gap-row-header{display:grid;grid-template-columns:100px 1fr 100px 100px 110px 28px;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--border2)}
+.gap-row-item{display:grid;grid-template-columns:100px 1fr 100px 100px 110px 28px;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer;border-radius:3px;transition:background .1s}
+.gap-row-item:hover{background:rgba(255,255,255,.02)}
+.gap-row-item.open{background:rgba(139,92,246,.04)}
+.gh{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.g-id{font-family:'DM Mono',monospace;font-size:10px;color:var(--vector)}
+.g-name{font-size:12px;font-weight:500}
+.g-sub{font-size:9px;font-family:'DM Mono',monospace;color:var(--muted);margin-top:1px}
+.g-cur{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)}
+.g-bench{font-family:'DM Mono',monospace;font-size:11px;color:var(--green)}
+.g-loss{font-family:'DM Mono',monospace;font-size:12px;font-weight:500;text-align:right}
+.g-loss.bad{color:var(--red)}
+.g-loss.ok{color:var(--muted)}
+.g-chev{font-size:9px;color:var(--muted);transition:transform .2s;text-align:center}
+.gap-row-item.open .g-chev{transform:rotate(90deg)}
+.gap-detail-box{display:none;background:rgba(139,92,246,.04);border:1px solid rgba(139,92,246,.12);border-radius:4px;padding:14px 18px;margin:0 0 4px;font-size:12px;line-height:1.75;color:var(--muted)}
+.gap-detail-box.on{display:block}
+.gap-detail-box strong{color:var(--text);font-weight:500}
+.fix-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);border-radius:2px;padding:2px 6px;color:var(--vector);margin-right:4px}
+
+/* AI insight card */
+.ai-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:20px}
+.ai-card-head{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.ai-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--vector);border:1px solid rgba(139,92,246,.3);padding:3px 8px;border-radius:2px}
+.ai-card-title{font-size:13px;font-weight:600}
+.ai-card-body{padding:18px 20px;font-size:13px;line-height:1.8;color:var(--muted);min-height:100px;font-family:'DM Mono',monospace;white-space:pre-wrap}
+.ai-card-body strong,.ai-card-body b{color:var(--text);font-weight:500}
+
+/* Action plan */
+.action-item{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--border);align-items:flex-start}
+.a-rank{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--vector);opacity:.25;line-height:1;flex-shrink:0;width:30px;text-align:center}
+.a-body{flex:1}
+.a-title{font-size:13px;font-weight:600;margin-bottom:3px}
+.a-desc{font-size:11px;color:var(--muted);line-height:1.65;font-family:'DM Mono',monospace}
+.a-impact{font-size:10px;font-family:'DM Mono',monospace;color:var(--green);margin-top:5px}
+.prod-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;padding:2px 6px;border-radius:2px;margin-left:6px;letter-spacing:.04em}
+
+/* ── PAGE 3: INTELLIGENCE ── */
+.intel-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:800px){.intel-grid{grid-template-columns:1fr}}
+.intel-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.intel-card.full{grid-column:1/-1}
+.ic-head{padding:14px 18px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.ic-category{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.ic-sev{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.ic-sev.critical{background:var(--red);box-shadow:0 0 8px var(--red)}
+.ic-sev.warning{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+.ic-sev.info{background:var(--levelplay)}
+.ic-sev.positive{background:var(--green)}
+.ic-title{font-size:13px;font-weight:600;margin-top:4px;padding:0 18px 12px}
+.ic-body{padding:0 18px 16px;font-size:12px;line-height:1.8;color:var(--muted);font-family:'DM Mono',monospace;min-height:80px;white-space:pre-wrap}
+.ic-body strong,.ic-body b{color:var(--text);font-weight:500}
+.ic-foot{padding:10px 18px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.ic-action{font-family:'DM Mono',monospace;font-size:9px;color:var(--vector);letter-spacing:.08em;cursor:pointer}
+.thumb-row{display:flex;gap:6px}
+.thumb-btn{background:none;border:1px solid var(--border);border-radius:2px;padding:3px 8px;font-size:10px;cursor:pointer;color:var(--muted);transition:all .15s}
+.thumb-btn:hover{border-color:var(--border2);color:var(--text)}
+.thumb-btn.active-up{border-color:var(--green);color:var(--green)}
+.thumb-btn.active-dn{border-color:var(--red);color:var(--red)}
+
+/* Loading spinner */
+.spin-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:60px 20px}
+.spinner{width:36px;height:36px;border:2px solid var(--border);border-top-color:var(--vector);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin-lbl{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.1em}
+
+/* Dimension filter bar */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;align-items:center}
+.filter-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.filter-select{background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:5px 10px;font-family:'DM Mono',monospace;font-size:10px;color:var(--text);cursor:pointer;outline:none}
+.filter-select:focus{border-color:var(--vector)}
+
+/* Trend sparkline */
+.sparkline-wrap{padding:0 18px 14px}
+canvas.spark{width:100%;height:40px;display:block}
+
+/* Stats row */
+.stats-row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:24px}
+.stat-mini{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:12px 14px}
+.sm-val{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.02em}
+.sm-lbl{font-family:'DM Mono',monospace;font-size:8px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-top:2px}
+.sm-delta{font-family:'DM Mono',monospace;font-size:9px;margin-top:2px}
+
+/* Refresh btn */
+.refresh-btn{background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.25);border-radius:3px;padding:7px 16px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--vector);cursor:pointer;transition:all .15s}
+.refresh-btn:hover{background:rgba(139,92,246,.2)}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+</style>
+</head>
+<body>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="app">
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <div class="logo-gem"></div>
+    Unity Prism
+  </div>
+  <div class="nav-tabs">
+    <button class="tab active" onclick="showPage('funnel',this)">Signal Funnel</button>
+    <button class="tab" onclick="showPage('gap',this)">Revenue Gap</button>
+    <button class="tab" onclick="showPage('intel',this)">Intelligence Feed</button>
+  </div>
+  <div class="nav-right">
+    <div class="live-dot"></div>
+    <div class="date-badge" id="dateRange">Loading…</div>
+  </div>
+</nav>
+
+<!-- PAGE 1: FUNNEL -->
+<div class="page active" id="page-funnel">
+  <div class="page-header">
+    <div class="page-eyebrow">VectorScope™ · Direct SDK Traffic</div>
+    <div class="page-title">25-Layer Signal Funnel</div>
+    <div class="page-sub">App A runtime signal → LevelPlay mediation → Vector AI bid → App B ROAS loop → retrains Vector. Direct SDK path only. SPO and IVT excluded — Unity's vertical integration eliminates both. Click any layer to inspect.</div>
+  </div>
+  <div class="prod-legend">
+    <div class="pl"><div class="pl-dot" style="background:var(--engine)"></div>Unity Engine</div>
+    <div class="pl"><div class="pl-dot" style="background:var(--analytics)"></div>Unity Analytics</div>
+    <div class="pl"><div class="pl-dot" style="background:var(--sdk)"></div>Unity Ads SDK</div>
+    <div class="pl"><div class="pl-dot" style="background:var(--levelplay)"></div>LevelPlay</div>
+    <div class="pl"><div class="pl-dot" style="background:var(--vector)"></div>Vector AI</div>
+    <div class="pl"><div class="pl-dot" style="background:var(--mmp)"></div>MMP</div>
+    <div class="pl"><div class="pl-dot" style="background:var(--acquire)"></div>Acquire</div>
+  </div>
+  <div class="funnel-layout">
+    <div class="cone-wrap">
+      <div class="cone-label">↓ Width = relative volume · color = product owner</div>
+      <div id="cone"></div>
+      <div class="feedback-row">
+        <div class="fb-line">
+          <span class="fb-arr">↑ L25</span>
+          <div class="fb-dashes"></div>
+          <span class="fb-txt">retrains Vector AI at L9</span>
+          <span class="fb-arr">L9 ↑</span>
+        </div>
+        <div class="fb-sub">App B signals (retention · IAP · level complete · payer rate) close the loop<br>each install improves the next bid · no external DSP can replicate this</div>
+      </div>
+    </div>
+    <div class="layer-detail">
+      <div class="detail-empty" id="detailEmpty">← select a layer to inspect<br>metrics · formula · dimensions</div>
+      <div class="detail-card" id="detailCard"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2: REVENUE GAP -->
+<div class="page" id="page-gap">
+  <div class="page-header">
+    <div class="page-eyebrow">AI-Powered · 7-Day Analysis</div>
+    <div class="page-title">Revenue Gap Analyzer</div>
+    <div class="page-sub">Based on your 7-day funnel data across all dimensions. Claude identifies what you're leaving on the table at each layer and how much the full Unity stack would have recovered.</div>
+  </div>
+  <div id="gapContent"><div class="spin-wrap"><div class="spinner"></div><div class="spin-lbl">Loading gap analysis…</div></div></div>
+</div>
+
+<!-- PAGE 3: INTELLIGENCE -->
+<div class="page" id="page-intel">
+  <div class="page-header" style="display:flex;align-items:flex-start;justify-content:space-between">
+    <div>
+      <div class="page-eyebrow">Claude · Auto-Generated</div>
+      <div class="page-title">Developer Intelligence</div>
+      <div class="page-sub">Continuous AI-generated insights across stack health, data quality, monetization outcomes, and revenue opportunities. Updated on demand.</div>
+    </div>
+    <button class="refresh-btn" onclick="refreshIntel()" id="refreshBtn">↺ Refresh Insights</button>
+  </div>
+  <div class="filter-bar">
+    <span class="filter-label">Filter by:</span>
+    <select class="filter-select" id="pubFilter" onchange="filterIntel()">
+      <option value="all">All Publishers</option>
+      <option>Rollic Games</option><option>Voodoo</option><option>Scopely</option>
+      <option>Jam City</option><option>Zynga</option><option>Miniclip</option>
+    </select>
+    <select class="filter-select" id="fmtFilter" onchange="filterIntel()">
+      <option value="all">All Formats</option>
+      <option>Rewarded</option><option>Interstitial</option><option>Banner</option>
+    </select>
+  </div>
+  <div id="intelContent"><div class="spin-wrap"><div class="spinner"></div><div class="spin-lbl">Generating intelligence…</div></div></div>
+</div>
+
+</div><!-- /app -->
+
+<script>
+// ══════════════════════════════════════════
+// LAYER DATA (25 layers, latest iteration)
+// ══════════════════════════════════════════
+const PC={engine:'#f59e0b',analytics:'#f59e0b',sdk:'#3b82f6',levelplay:'#06b6d4',vector:'#8b5cf6',mmp:'#ec4899',acquire:'#f97316'};
+
+const LAYERS=[
+  {id:'L0a',ph:0,phLbl:'Phase 0 — Engine & Analytics',prod:'engine',prodLbl:'Unity Engine',name:'Unity Engine App A',vol:100,vLbl:'App A/init',sig:'a',ns:false,moat:false,loop:false,
+   metric:'session depth · level completion · IAP history · churn risk',
+   formula:'session_depth · level_completion_rate · prior_iap_events · churn_risk_score',
+   errors:['RUNTIME_EVENT_NOT_RECEIVED','ENGINE_CONSENT_MISSING'],
+   note:'In-game behavioral data at SDK init. Flows into Vector bid at L9. Rewarded ad placement strategy set here — Unity docs recommend identifying game stress points (out of lives, boss fights, currency shortfalls) as optimal rewarded ad triggers.',
+   dims:[]},
+  {id:'L0b',ph:0,phLbl:'Phase 0 — Engine & Analytics',prod:'analytics',prodLbl:'Unity Analytics',name:'Unity Analytics App A',vol:100,vLbl:'App A/init',sig:'a',ns:false,moat:false,loop:false,
+   metric:'D1/D7 retention · feature engagement · payer status flag',
+   formula:'d1_d7_retention_app_a · feature_engagement_score · payer_status_flag',
+   errors:['EVENT_SCHEMA_MISMATCH','ANALYTICS_PIPELINE_LATENCY'],
+   note:'Structured App A events. Payer status flag is highest-value signal into Vector. Unattributed install data (organic + other networks) also recommended — enriches UA models. MMPs: AppsFlyer, Adjust, Singular, ByteBrew.',
+   dims:[]},
+  {id:'L1',ph:1,phLbl:'Phase 1 — SDK Initialization',prod:'sdk',prodLbl:'Unity Ads SDK v4.17.0',name:'SDK Initialization',vol:100,vLbl:'~100%',sig:null,ns:false,moat:false,loop:false,
+   metric:'init success rate · init latency ms · Sessions (each init = new session)',
+   formula:'sdk_init_success / total_sdk_starts · init_latency_ms',
+   errors:['SDK_NOT_INITIALIZED','INIT_TIMEOUT'],
+   note:'Current SDK: v4.17.0 (2026-03-04). LevelPlay: 9.4.0 (2026-04-08). CRITICAL: From April 1 2026, Legacy Advertisement Package apps see reduced fill — migrate to LevelPlay bidder. SDK 9.0.0 refactored all APIs from IronSource → LevelPlay namespace. v4.16.1 reduced init latency. getToken API (v4.15.0) supports format-optimized loading.',
+   dims:[{g:'App',i:['Advertiser Game ID','Advertiser App Name','Advertiser Store ID']},{g:'Device & Geo',i:['Platform','OS Version','Country','Device Language']},{g:'LevelPlay',i:['SDK Version','App Version','Connection Type']}]},
+  {id:'L2',ph:1,phLbl:'Phase 1 — SDK Initialization',prod:'sdk',prodLbl:'Unity Ads SDK',name:'SDK Config Fetch',vol:99,vLbl:'~99%',sig:null,ns:false,moat:false,loop:false,
+   metric:'config fetch success rate · config fetch latency ms',
+   formula:'config_fetch_success / attempts · config_fetch_latency_ms',
+   errors:['CONFIG_FETCH_TIMEOUT'],
+   note:'LevelPlay 9.4.0 introduced LevelPlayPrivacySettings — config fetch must complete before privacy flags applied at L3. Bidding Strategy (Automated vs Manual) configured here.',
+   dims:[{g:'Device & Geo',i:['Platform','OS Version','Country']}]},
+  {id:'L3',ph:1,phLbl:'Phase 1 — SDK Initialization',prod:'sdk',prodLbl:'Unity Ads SDK',name:'Identity Signals',vol:97,vLbl:'~97%',sig:null,ns:false,moat:false,loop:false,
+   metric:'IDFA rate · GAID rate · device identity coverage',
+   formula:'idfa_available / requests · gaid_available / requests · identity_coverage_rate',
+   errors:['IDFA_NOT_AVAILABLE','GAID_NOT_AVAILABLE'],
+   note:'Identity signal coverage directly impacts Vector bid quality and audience segmentation. Platform determines which signal is available — IDFA on iOS, GAID on Android. LevelPlay Performance Reports support IDFA and GAID as dedicated breakdown dimensions.',
+   dims:[{g:'Device & Geo',i:['Platform','OS Version','Country','Device Language']},{g:'LevelPlay',i:['IDFA','GAID','Platform']}]},
+  {id:'L4',ph:1,phLbl:'Phase 1 — SDK Initialization',prod:'sdk',prodLbl:'Unity Ads SDK · LevelPlay 9.4.0',name:'Privacy Consent Flags',vol:98,vLbl:'~98%',sig:null,ns:false,moat:false,loop:false,
+   metric:'COPPA accuracy · GDPR consent rate · CCPA opt-out',
+   formula:'valid_consent_flags / requests · coppa_flag_accuracy',
+   errors:[],
+   note:'LevelPlay 9.4.0 introduced LevelPlayPrivacySettings with setGDPRConsents, setCCPA, setCOPPA — deprecating setMetaData. v4.17.0 added beta privacy APIs for Swift/Kotlin/ObjC/Java. Country determines jurisdiction: GDPR (EU), CCPA (US), COPPA (global under-13).',
+   dims:[{g:'Device & Geo',i:['Country','Device Language']},{g:'Acquire Filter',i:['Event Optimization Type','Bidding strategy (beta)']}]},
+  {id:'L5',ph:2,phLbl:'Phase 2 — Ad Request',prod:'sdk',prodLbl:'Unity Ads SDK · LevelPlay',name:'Ad Request Generated',vol:95,vLbl:'~95% · App A',sig:'a',ns:false,moat:false,loop:false,
+   metric:'ad request count · requests per DAU · App Requests (LevelPlay)',
+   formula:'ad_request_count · ad_requests / dau',
+   errors:[],
+   note:'Unity SDK sends ad request directly to LevelPlay — zero intermediaries. This is the structural SPO advantage: Publisher → Unity SDK → LevelPlay → Vector. No resellers, no unauthorized paths, no supply chain validation needed. Source App ID and Category identify the publisher game (App A).',
+   dims:[{g:'Source',i:['Source App ID','Source App Category']},{g:'App',i:['Advertiser Game ID','Advertiser App Name']},{g:'Device & Geo',i:['Platform','Country']}]},
+  {id:'L6',ph:3,phLbl:'Phase 3 — Auction',prod:'levelplay',prodLbl:'LevelPlay',name:'Mediation Receives Request',vol:93,vLbl:'~93% · App A',sig:'a',ns:false,moat:false,loop:false,
+   metric:'mediation receive rate · latency ms · Ad source availability rate',
+   formula:'mediation_requests / clean_ad_requests · availability_rate = available_responses / checks',
+   errors:['MEDIATION_TIMEOUT'],
+   note:'LevelPlay is the auction entry point. Three Ad Source Availability metrics: checks (how often an ad source is asked if ready), responses (how often it had an ad), rate (the ratio). LevelPlay 9.2.0 introduced Show Recovery — fallback logic when first delivery fails. 9.4.0 enhanced fallback further.',
+   dims:[{g:'Campaign',i:['Campaign ID','Campaign Name','Campaign Goal','Bidding Strategy']},{g:'Device & Geo',i:['Platform','Country']},{g:'LevelPlay',i:['Ad Network','Instances','Segment','AB test group']}]},
+  {id:'L7',ph:3,phLbl:'Phase 3 — Auction',prod:'vector',prodLbl:'Vector AI · LevelPlay',name:'Floor Price Set',vol:92,vLbl:'~92% · App A',sig:'a',ns:false,moat:false,loop:false,
+   metric:'floor compliance rate · no-fill from floor % · eCPM floor by segment',
+   formula:'optimal_floor_by_segment · floor_nofill_rate',
+   errors:['NO_BID_BELOW_FLOOR','FLOOR_TOO_HIGH'],
+   note:'Vector uses App A signals (L0a/L0b) to set smarter floors per user segment — high-value gamers get higher floors. External DSPs set blanket floors without pre-bid behavioral data. Country and Platform are primary segmentation axes — eCPMs vary dramatically by geo and OS.',
+   dims:[{g:'Device & Geo',i:['Country','Platform','OS Version','Screen density']},{g:'Source',i:['Source App Category']}]},
+  {id:'L8',ph:3,phLbl:'Phase 3 — Auction',prod:'levelplay',prodLbl:'LevelPlay · Vector AI',name:'Bid Request Fan-out',vol:90,vLbl:'~90% · App A',sig:'a',ns:false,moat:false,loop:false,
+   metric:'bid density · DSPs called · TMAX ms',
+   formula:'bid_requests_sent / mediation_requests · bid_density',
+   errors:[],
+   note:'Bid requests go to Vector AI and external DSPs in the LevelPlay open auction. Bidding Strategy (Automated vs Manual) determines tCPI calculation. LevelPlay 9.1.0 Network Manager added "update all" for partner network adapter management.',
+   dims:[{g:'Campaign',i:['Campaign ID','Campaign Name','Bidding Strategy']},{g:'Device & Geo',i:['Platform','Country']}]},
+  {id:'L9',ph:3,phLbl:'Phase 3 — Auction',prod:'vector',prodLbl:'Vector AI (+ App A signal)',name:'Vector AI Bid Decision ★',vol:87,vLbl:'~87% · App A',sig:'ab',ns:true,moat:true,loop:false,
+   metric:'bid rate · predicted LTV · ROAS prediction · Target CPI',
+   formula:'bid = predicted_ltv × win_prob × margin · vector_bid_rate',
+   errors:[],
+   note:'THE MOAT. Vector is the only DSP that sees App A pre-bid behavioral data from L0a/L0b before placing a single bid. AppLovin Axon, Google UAC, Meta see App B signals only. Campaign Goal (CPI/ROAS/Retention/Event optimization) determines which predicted signal Vector optimizes toward. Vector also buys from LevelPlay — which it owns — collapsing buyer-seller distance to zero. App B signals from L25 continuously retrain this model.',
+   dims:[{g:'Campaign',i:['Campaign Goal','Bidding Strategy','ROAS Type','Campaign ID']},{g:'App',i:['Advertiser Game ID','Advertiser App ID']},{g:'Device & Geo',i:['Country','Platform','OS Version','Device Language']},{g:'Source',i:['Source App ID','Source App Category']}]},
+  {id:'L10',ph:3,phLbl:'Phase 3 — Auction',prod:'levelplay',prodLbl:'LevelPlay',name:'External DSP Bids',vol:84,vLbl:'~84% · App A',sig:null,ns:false,moat:false,loop:false,
+   metric:'bid response rate by DSP · avg bid price · timeout rate',
+   formula:'valid_bids / requests_by_dsp · avg_bid_price · timeout_rate',
+   errors:[],
+   note:'External DSPs (AppLovin Axon, Google UAC, Moloco, Meta, DV360) bid through LevelPlay here. These DSPs do NOT have App A pre-bid signals — they work with App B signals only. Vector\'s bid at L9 is better informed because of L0a/L0b. This is where the moat is most visible in auction mechanics.',
+   dims:[{g:'Device & Geo',i:['Country','Platform']}]},
+  {id:'L11',ph:3,phLbl:'Phase 3 — Auction',prod:'levelplay',prodLbl:'LevelPlay',name:'Mediation Auction Runs',vol:81,vLbl:'~81% · App A',sig:null,ns:false,moat:false,loop:false,
+   metric:'fill rate · clearing price · eCPM · ARPDAU · ARPDEU',
+   formula:'fill_rate = winners / auctions · ecpm = revenue / impressions × 1000',
+   errors:['NO_WINNER_ALL_BELOW_FLOOR'],
+   note:'eCPM is a default Acquire dashboard metric. LevelPlay Performance Reports surface Revenue, eCPM, ARPDAU, ARPDEU. Country, Platform, Ad Network, and Ad format are primary LevelPlay breakdown dimensions for eCPM analysis.',
+   dims:[{g:'Device & Geo',i:['Country','Platform','OS Version']},{g:'Campaign',i:['Campaign Goal','Campaign Name']},{g:'LevelPlay',i:['Ad Network','Ad format','Country','Platform']}]},
+  {id:'L12',ph:3,phLbl:'Phase 3 — Auction',prod:'vector',prodLbl:'LevelPlay · Vector AI',name:'Win Notification Sent',vol:79,vLbl:'~79% · App A',sig:null,ns:false,moat:false,loop:false,
+   metric:'win notice delivery rate · price accuracy',
+   formula:'win_notices_sent / auction_winners · win_price_delta_pct',
+   errors:['WIN_NOTICE_DELIVERY_FAILED'],
+   note:'Win price accuracy feeds back into Vector\'s bid calibration for future impressions — each win notification is training data for the model.',
+   dims:[]},
+  {id:'L13',ph:4,phLbl:'Phase 4 — Loading',prod:'sdk',prodLbl:'Unity Ads SDK',name:'Creative Delivery',vol:72,vLbl:'~72% · App A',sig:null,ns:false,moat:false,loop:false,
+   metric:'delivery success rate · delivery latency ms',
+   formula:'creatives_delivered / auction_winners · delivery_latency_ms',
+   errors:['CREATIVE_DELIVERY_TIMEOUT'],
+   note:'Creative Pack Name/ID are primary dimensions for isolating delivery failures. Video Length identifies whether longer creatives correlate with timeouts. v4.15.0 getToken API with ad format support optimizes loading. v4.16.5 improved banner behavior.',
+   dims:[{g:'Creative',i:['Creative Pack Name','Creative Pack ID','Video length']},{g:'Device & Geo',i:['Platform','OS Version','Country','Screen density']},{g:'LevelPlay',i:['Ad format','Banner size']}]},
+  {id:'L14',ph:4,phLbl:'Phase 4 — Loading',prod:'sdk',prodLbl:'Unity Ads SDK',name:'Asset Download',vol:69,vLbl:'~69% · App A',sig:null,ns:false,moat:false,loop:false,
+   metric:'download success rate · CDN latency p99',
+   formula:'asset_download_success / attempts · asset_latency_p99_ms',
+   errors:['ASSET_DOWNLOAD_TIMEOUT','CDN_UNREACHABLE'],
+   note:'Country dimension critical — CDN latency p99 varies sharply by geo. Video Length correlates with asset size and download failure rate. v4.16.5 fixed low-memory device performance.',
+   dims:[{g:'Creative',i:['Video length','Creative Pack ID']},{g:'Device & Geo',i:['Country','Platform','OS Version']}]},
+  {id:'L15',ph:4,phLbl:'Phase 4 — Loading',prod:'sdk',prodLbl:'Unity Ads SDK',name:'MRAID / JS Template Load',vol:65,vLbl:'~65% · App A',sig:null,ns:false,moat:false,loop:false,
+   metric:'template success rate · WebView error rate',
+   formula:'template_load_success / attempts · webview_error_rate',
+   errors:['WEBVIEW_ERROR','MRAID_JS_FAILED'],
+   note:'OS Version and Screen density/size are key axes for WebView error investigation — MRAID failures correlate strongly with specific OS versions and unusual screen configurations.',
+   dims:[{g:'Device & Geo',i:['Platform','OS Version','Screen density','Country']},{g:'Creative',i:['Creative Pack ID','Creative Pack Name']}]},
+  {id:'L16',ph:4,phLbl:'Phase 4 — Loading ★',prod:'sdk',prodLbl:'Unity Ads SDK',name:'Ad Render Success ★',vol:62,vLbl:'~62% · App A',sig:null,ns:true,moat:false,loop:false,
+   metric:'render rate = play_ad_api / load_ad_api · Video completion · Completion rate',
+   formula:'render_rate = play_ad_api / load_ad_api · load_to_play_latency_ms',
+   errors:['AD_NOT_LOADED','AD_EXPIRED'],
+   note:'PRIMARY NORTH STAR. Every 1% improvement = direct developer revenue uplift. Unity ranks impression types by eCPM: ad start < completed view < click < install — render rate determines how many starts convert to completed views. LevelPlay Performance Reports surface Video completion, Completion rate, and Avg revenue/completion.',
+   dims:[{g:'Creative',i:['Creative Pack Name','Video length']},{g:'Device & Geo',i:['Platform','OS Version','Screen density','Country','Device Language']},{g:'Source',i:['Source App ID','Source App Category']},{g:'LevelPlay',i:['Ad format','Placement','Segment']}]},
+  {id:'L17',ph:5,phLbl:'Phase 5 — Action',prod:'sdk',prodLbl:'Unity Ads SDK',name:'Ad Play Starts',vol:60,vLbl:'~60% · App A',sig:null,ns:false,moat:false,loop:false,
+   metric:'play start rate · mute state · Engaged sessions',
+   formula:'ad_play_start / play_ad_api · mute_state_rate',
+   errors:['AD_EXPIRED_ON_PLAY'],
+   note:'Mute state critical for gaming publishers — unexpected audio causes session abandonment. Rewarded ads generate highest quality play starts — players opt in voluntarily. v4.16.0 added offerwall promotion within video placements on Android.',
+   dims:[{g:'Creative',i:['Video length','Creative Pack Name']},{g:'Device & Geo',i:['Platform','Country']},{g:'LevelPlay',i:['Ad format','Placement','Segment']}]},
+  {id:'L18',ph:5,phLbl:'Phase 5 — Action',prod:'sdk',prodLbl:'Unity Ads SDK',name:'Impression Registered',vol:58,vLbl:'~58% · App A',sig:null,ns:false,moat:false,loop:false,
+   metric:'Starts · eCPM · View Completion Rate · DAU · DEU · Engagement rate',
+   formula:'impression_beacon / play_start · viewability_pct · vcr',
+   errors:['IMPRESSION_BEACON_FAILED'],
+   note:'Starts (Acquire) = Impressions (LevelPlay). LevelPlay adds: DAU, DEU (daily engaged users), Engagement rate (DEU/DAU), Impressions/DAU, Sessions/DAU.',
+   dims:[{g:'Device & Geo',i:['Country','Platform','OS Version','Device Language']},{g:'Source',i:['Source App ID','Source App Category']},{g:'Creative',i:['Creative Pack Name','Video length']},{g:'Campaign',i:['Campaign Goal','Campaign Name']},{g:'LevelPlay',i:['Ad Network','Ad format','Connection Type']}]},
+  {id:'L19',ph:5,phLbl:'Phase 5 — Action',prod:'sdk',prodLbl:'Unity Ads SDK',name:'User Click',vol:8,vLbl:'~8% CTR',sig:null,ns:false,moat:false,loop:false,
+   metric:'CTR % · Clicks · CTA engagement rate',
+   formula:'ctr = clicks / impressions · cta_engagement_rate',
+   errors:['CLICK_BEACON_FAILED'],
+   note:'CTR (Clicks ÷ Starts) is a default Acquire dashboard metric. Creative Pack Name and Video Length are the primary diagnostic dimensions — CTR variance across packs identifies winning and underperforming formats.',
+   dims:[{g:'Creative',i:['Creative Pack Name','Creative Pack ID','Video length']},{g:'Device & Geo',i:['Country','Platform','Device Language']},{g:'Campaign',i:['Campaign Goal','Campaign Name']}]},
+  {id:'L20',ph:5,phLbl:'Phase 5 — Action',prod:'mmp',prodLbl:'MMP · Vector AI · Acquire',name:'Install Attribution',vol:5,vLbl:'~5% · App B',sig:'b',ns:false,moat:false,loop:false,
+   metric:'Installs · CVR · IPM · Unity vs MMP match rate',
+   formula:'ir = installs / clicks · cvr = installs / starts · ipm = installs / starts × 1000',
+   errors:['ATTRIBUTION_MISMATCH','SKAN_POSTBACK_NOT_RECEIVED','FRAUD_REJECTION'],
+   note:'Attribution types: Unity-attributed, Unattributed (organic/other), Organic. Conversion types: Click (required) and view-through (recommended). Advertiser Store ID is the MMP linkage key — mismatch is the most common root cause of attribution variance. <95% Unity vs MMP match rate = data integrity alert.',
+   dims:[{g:'App',i:['Advertiser Game ID','Advertiser App ID','Advertiser Store ID']},{g:'Campaign',i:['Campaign Goal','Campaign ID','Bidding Strategy']},{g:'Device & Geo',i:['Country','Platform','OS Version']},{g:'Creative',i:['Creative Pack Name','Video length']}]},
+  {id:'L21',ph:5,phLbl:'Phase 5 — Action',prod:'acquire',prodLbl:'Acquire · MMP',name:'Acquire ROAS',vol:4,vLbl:'D28 · App B',sig:'b',ns:false,moat:false,loop:false,
+   metric:'Spend · CPI · Target CPI · Total ROAS · IAP ROAS · Ad Revenue ROAS',
+   formula:'roas_d7 = cohort_revenue_d7 / cohort_spend · cpi = spend / installs',
+   errors:[],
+   note:'Total ROAS, IAP ROAS, and Ad Revenue ROAS available at D0/D1/D3/D7/D14/D21/D28. ROAS Type filter: Ad revenue / In-app Purchases / Hybrid. Automated Bidding auto-adjusts tCPI toward ROAS target. D28 ROAS on 2026 roadmap — requires runtime data integration from L0a/L0b.',
+   dims:[{g:'Campaign',i:['Campaign Goal','ROAS Type','Bidding Strategy','Campaign ID']},{g:'App',i:['Advertiser Game ID','Advertiser Store ID']},{g:'Device & Geo',i:['Country','Platform']}]},
+  {id:'L22',ph:6,phLbl:'Phase 6 — App B ROAS Loop → retrains L9',prod:'acquire',prodLbl:'Unity Analytics · MMP',name:'App B Retention',vol:3,vLbl:'cohort · App B',sig:'b',ns:false,moat:false,loop:true,
+   metric:'Retained users · Retention rate D1/D3/D7/D14/D21/D28',
+   formula:'d7_retention = users_active_d7 / installs_d0',
+   errors:['IAP_EVENT_NOT_RECEIVED'],
+   note:'Retained and Retention Rate D1–D28. Retained users signal high-LTV installs, improving future Vector bids at L9. LevelPlay Cohorts Reports provide publisher-side retention view.',
+   dims:[{g:'Campaign',i:['Campaign Goal','Campaign Name']},{g:'App',i:['Advertiser Game ID']},{g:'Device & Geo',i:['Country','Platform','OS Version']}]},
+  {id:'L23',ph:6,phLbl:'Phase 6 — App B ROAS Loop → retrains L9',prod:'acquire',prodLbl:'Unity Analytics · MMP',name:'App B IAP · Payer Rate',vol:2.5,vLbl:'cohort · App B',sig:'b',ns:false,moat:false,loop:true,
+   metric:'IAP Revenue · Purchases · Unique Purchases · Payer · Payer Rate',
+   formula:'payer_rate = iap_purchasers / installs · unique_purchases = first_iap_per_user',
+   errors:[],
+   note:'Unique Purchases = first IAP per user = free-to-payer conversion. Unity docs warn: rewarded rewards must complement IAP items, not compete — if a $4.99 sword is free via ad watch, IAP revenue collapses. Payer signal retrains Vector to bid toward predicted payers.',
+   dims:[{g:'Campaign',i:['Campaign Goal','ROAS Type']},{g:'Event',i:['Event','Event Name Targeting']},{g:'Device & Geo',i:['Country','Platform']}]},
+  {id:'L24',ph:6,phLbl:'Phase 6 — App B ROAS Loop → retrains L9',prod:'analytics',prodLbl:'Unity Analytics · Unity Engine',name:'App B Feature Engagement',vol:2,vLbl:'cohort · App B',sig:'ab',ns:false,moat:false,loop:true,
+   metric:'Level Complete · Level Complete Rate · Cost per Level Complete · Event Rate',
+   formula:'level_completion_rate · feature_engagement_score · session_depth_d7',
+   errors:['RUNTIME_SIGNAL_GAP'],
+   note:'Level Complete metrics are the same in-game behavioral signals from L0a that Vector ingests at L9. App B level completion data retrains Vector to predict which App A users become high-engagement App B users. Unity docs: "place a character right before a boss fight that offers to heal the player."',
+   dims:[{g:'Event',i:['Event','Event Name Targeting']},{g:'Campaign',i:['Campaign Goal','Campaign Name']},{g:'Device & Geo',i:['Country','Platform','OS Version']}]},
+  {id:'L25',ph:6,phLbl:'Phase 6 — App B ROAS Loop → retrains L9',prod:'vector',prodLbl:'Vector AI · Unity Analytics · Unity Engine',name:'LTV Prediction ★ Moat',vol:1,vLbl:'moat · Both',sig:'ab',ns:true,moat:true,loop:true,
+   metric:'predicted vs actual D28 ROAS delta · model lift · LTV accuracy',
+   formula:'ltv_accuracy = actual_d28_roas / predicted_d28_roas · model_improvement_delta',
+   errors:['LTV_PREDICTION_DRIFT','MODEL_CONFIDENCE_LOW'],
+   note:'THE MOAT. Ultimate measure of Vector model quality. No external DSP can replicate this without owning a game engine. App B signals retrain Vector at L9 across D0–D28, closing the loop: better bids → better installs → better training data → better bids. Unattributed organic App B behavior provides ground truth LTV signal that attributed-only data misses.',
+   dims:[{g:'Campaign',i:['Campaign Goal','ROAS Type','Bidding Strategy']},{g:'App',i:['Advertiser Game ID','Advertiser Store ID']},{g:'Event',i:['Event','Event Name Targeting']},{g:'Device & Geo',i:['Country','Platform','OS Version','Device Language']},{g:'Source',i:['Source App ID','Source App Category']},{g:'Creative',i:['Creative Pack Name','Video length']}]},
+];
+
+const PHASES=[
+  {id:0,label:'Phase 0 — Engine & Analytics'},{id:1,label:'Phase 1 — SDK Init'},
+  {id:2,label:'Phase 2 — Ad Request'},{id:3,label:'Phase 3 — Auction'},
+  {id:4,label:'Phase 4 — Loading ★'},{id:5,label:'Phase 5 — Action'},
+  {id:6,label:'Phase 6 — App B ROAS Loop'},
+];
+const TOTAL=LAYERS.length;
+const MAX_W=340,MIN_W=42;
+function bw(i){return MAX_W-(MAX_W-MIN_W)*(i/(TOTAL-1))}
+LAYERS.forEach((l,i)=>{l._idx=i});
+const byPhase={};
+LAYERS.forEach(l=>{if(!byPhase[l.ph])byPhase[l.ph]=[];byPhase[l.ph].push(l)});
+
+// ── NAV ──
+function showPage(id,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  btn.classList.add('active');
+  if(id==='gap'&&!gapLoaded) loadGap();
+  if(id==='intel'&&!intelLoaded) loadIntel();
+}
+
+// ══════════════════════
+// PAGE 1 — FUNNEL
+// ══════════════════════
+let activeLayerRow=null;
+function renderCone(){
+  const cone=document.getElementById('cone');
+  cone.innerHTML='';
+  PHASES.forEach(ph=>{
+    const layers=byPhase[ph.id]||[];
+    if(!layers.length)return;
+    const grp=document.createElement('div');
+    grp.className='phase-group';
+    const lbl=document.createElement('div');
+    lbl.className='phase-lbl';
+    lbl.style.color=PC[layers[0].prod];
+    lbl.textContent=ph.label;
+    grp.appendChild(lbl);
+    layers.forEach(layer=>{
+      const color=PC[layer.prod];
+      const w=bw(layer._idx);
+      const row=document.createElement('div');
+      row.className='layer-row';
+      const lid=document.createElement('div');
+      lid.className='lid';
+      lid.textContent=layer.id;
+      const slot=document.createElement('div');
+      slot.className='lslot';
+      const bar=document.createElement('div');
+      bar.className='bar'+(layer.ns?' pulse-bar':'')+(layer.loop?' loop-bar':'');
+      bar.style.width=w+'px';
+      bar.style.background=`linear-gradient(90deg,${color}48,${color}20)`;
+      bar.style.borderLeft=`2px solid ${color}`;
+      if(layer.loop){bar.style.borderColor=`${color}55 ${color}30 ${color}30 ${color}`;bar.style.background=`linear-gradient(90deg,${color}58,${color}22)`;}
+      const bn=document.createElement('span');bn.className='bname';
+      bn.textContent=layer.name.replace(' ★','').replace(' ★ Moat','');
+      const bv=document.createElement('span');bv.className='bvol';
+      bv.textContent=layer.vLbl;
+      bar.appendChild(bn);bar.appendChild(bv);
+      slot.appendChild(bar);row.appendChild(lid);row.appendChild(slot);
+      row.addEventListener('click',()=>selectLayer(layer,row));
+      grp.appendChild(row);
+    });
+    cone.appendChild(grp);
+  });
+}
+
+function selectLayer(layer,row){
+  if(activeLayerRow)activeLayerRow.classList.remove('active');
+  row.classList.add('active');activeLayerRow=row;
+  document.getElementById('detailEmpty').style.display='none';
+  const card=document.getElementById('detailCard');
+  card.classList.add('on');
+  const color=PC[layer.prod];
+  let sig='';
+  if(layer.sig==='a')sig='<span class="bdg bdg-sig-a">APP A SIGNAL</span>';
+  if(layer.sig==='b')sig='<span class="bdg bdg-sig-b">APP B SIGNAL</span>';
+  if(layer.sig==='ab')sig='<span class="bdg bdg-sig-ab">APP A + APP B</span>';
+  let badges=sig;
+  if(layer.ns)badges+='<span class="bdg bdg-ns">★ North Star</span>';
+  if(layer.moat)badges+='<span class="bdg bdg-moat">🔒 Vector Moat</span>';
+  if(layer.loop)badges+='<span class="bdg bdg-loop">↑ Retrains L9</span>';
+  let errs=layer.errors&&layer.errors.length?`<div class="sec">Error Codes</div><div class="errs">${layer.errors.map(e=>`<div class="ec">${e}</div>`).join('')}</div>`:'';
+  let note=layer.note?`<div class="sec">Insight</div><div class="note-txt">${layer.note}</div>`:'';
+  let dims=layer.dims&&layer.dims.length?`<div class="sec">Acquire Dimensions</div>${layer.dims.map(d=>`<div class="dg"><div class="dg-lbl" style="color:${color}">${d.g}</div><div class="pills">${d.i.map(x=>`<span class="pill">${x}</span>`).join('')}</div></div>`).join('')}`:'';
+  const vw=Math.max(4,Math.min(100,layer.vol));
+  card.innerHTML=`
+    <div class="dc-head" style="border-left:3px solid ${color}">
+      <div class="dc-phase" style="color:${color}">${layer.phLbl} · ${layer.prodLbl}</div>
+      <div class="dc-id">${layer.id}</div>
+      <div class="dc-name">${layer.name.replace(' ★','').replace(' ★ Moat','')}</div>
+      <div class="dc-prod" style="color:${color}">${layer.prodLbl}</div>
+      ${badges?`<div class="dc-badges">${badges}</div>`:''}
+    </div>
+    <div class="dc-body">
+      <div class="sec">Key Metric</div>
+      <div class="chip"><div class="chip-lbl">Metric</div><div class="chip-val">${layer.metric}</div></div>
+      <div class="sec">Formula</div>
+      <div class="formula" style="border:1px solid ${color}22;color:${color}">${layer.formula}</div>
+      ${errs}${note}${dims}
+      <div class="vol-wrap">
+        <div class="vol-lbl"><span>Relative Volume</span><span style="color:${color}">${layer.vLbl}</span></div>
+        <div class="vol-track"><div class="vol-fill" style="width:${vw}%;background:${color}"></div></div>
+      </div>
+    </div>`;
+}
+renderCone();
+
+// ══════════════════════
+// DATA LOADING
+// ══════════════════════
+let DATA=[];
+let gapLoaded=false,intelLoaded=false;
+
+async function loadData(){
+  try{
+    const r=await fetch('unity_prism_data.json');
+    DATA=await r.json();
+    const dates=[...new Set(DATA.map(d=>d.date))].sort();
+    document.getElementById('dateRange').textContent=`${dates[0]} → ${dates[dates.length-1]}`;
+  }catch(e){
+    console.warn('Could not load data file, using inline summary');
+    DATA=[];
+  }
+}
+
+function agg(filter=()=>true){
+  const rows=DATA.filter(filter);
+  if(!rows.length)return null;
+  const sum=(k)=>rows.reduce((a,r)=>a+(r[k]||0),0);
+  const avg=(k)=>sum(k)/rows.length;
+  return{
+    impressions:sum('impressions'),clicks:sum('clicks'),installs:sum('installs'),
+    revenue:sum('revenue'),ad_spend:sum('ad_spend'),bid_requests:sum('bid_requests'),
+    bid_wins:sum('bid_wins'),ad_requests:sum('ad_requests'),bid_responses:sum('bid_responses'),
+    fill_rate:avg('fill_rate'),win_rate:avg('win_rate'),render_rate:avg('render_rate'),
+    ctr:avg('ctr'),cvr:avg('cvr'),ecpm:avg('ecpm'),roas_d7:avg('roas_d7'),roas_d28:avg('roas_d28'),
+    ltv_d7:avg('ltv_d7'),ltv_d28:avg('ltv_d28'),n:rows.length
+  };
+}
+
+// ══════════════════════
+// PAGE 2 — REVENUE GAP
+// ══════════════════════
+const FULL_STACK={fill_rate:0.89,render_rate:0.62,ecpm:14.20,roas_d7:0.34,ctr:0.068,cvr:0.051,win_rate:0.42};
+const GAP_META={
+  fill_rate:{label:'Mediation Fill Rate',layer:'L6/L11',unit:'%',scale:100,prod:'levelplay',
+    why:'LevelPlay Show Recovery (v9.2.0) adds fallback ad delivery when first attempt fails. AdMob and MAX paths lack Unity\'s native Show Recovery, reducing fill.',
+    fix:'Migrate all mediation to LevelPlay · Enable Show Recovery in LevelPlay 9.4.0'},
+  render_rate:{label:'Ad Render Rate ★',layer:'L16',unit:'%',scale:100,prod:'sdk',
+    why:'Render rate is the primary north star. Legacy SDK v4.15.0 apps see degraded render performance post-April 2026 deprecation. Each 1% improvement = direct revenue uplift.',
+    fix:'Migrate to Unity Ads SDK v4.17.0 · Legacy Package deprecated April 1 2026'},
+  ecpm:{label:'eCPM',layer:'L9/L11',unit:'$',scale:1,prod:'vector',
+    why:'Vector AI uses App A pre-bid behavioral signals that no external DSP has. Without Vector, floor prices are set without user-level LTV signals, suppressing eCPM.',
+    fix:'Enable Vector AI bid optimization · Connect Unity Analytics for pre-bid signal'},
+  roas_d7:{label:'D7 ROAS',layer:'L21/L25',unit:'%',scale:100,prod:'vector',
+    why:'D7 ROAS gap signals the retraining loop is incomplete. Without App B behavioral data flowing back to Vector, the model cannot improve. Competitor ROAS compounds; yours stays flat.',
+    fix:'Full stack: Engine + Analytics + Vector + Acquire closes the D7→D28 ROAS loop'},
+  ctr:{label:'CTR',layer:'L19',unit:'%',scale:100,prod:'analytics',
+    why:'Without Unity Analytics, creative performance feedback cannot flow back to bid optimization. Low CTR means creatives are not resonating — and the model cannot learn which creatives work for which user segments.',
+    fix:'Enable Unity Analytics · Connect creative performance to Vector bidding signals'},
+  cvr:{label:'Install CVR',layer:'L20',unit:'%',scale:100,prod:'vector',
+    why:'CVR gap signals bids are not targeting the right users. Without App A behavioral signals in the bid, Vector cannot predict which users will install AND retain. External DSPs see App B signals only.',
+    fix:'Enable Vector AI for install prediction · Ensure App A engine signals are connected'},
+  win_rate:{label:'Bid Win Rate',layer:'L9/L10',unit:'%',scale:100,prod:'vector',
+    why:'Win rate below benchmark suggests bids are not competitive. Vector\'s LTV-informed bids win more because they correctly value high-LTV users — low win rate indicates LTV prediction is missing pre-bid data.',
+    fix:'Enable Vector AI · Connect Unity Analytics App A signals'},
+};
+const IMPACT_PER_UNIT={fill_rate:180,render_rate:220,ecpm:800,roas_d7:150,ctr:90,cvr:70,win_rate:100};
+
+async function loadGap(){
+  gapLoaded=true;
+  if(!DATA.length)await loadData();
+  const tot=agg();
+  if(!tot){document.getElementById('gapContent').innerHTML='<div style="color:var(--muted);text-align:center;padding:60px;font-family:\'DM Mono\',monospace">Could not load data file. Please ensure unity_prism_data.json is in the same directory.</div>';return;}
+
+  // Compute gaps
+  const gaps=[];
+  let totalDailyLoss=0;
+  for(const[key,meta]of Object.entries(GAP_META)){
+    const cur=tot[key];
+    const bench=FULL_STACK[key];
+    const gap=bench-cur;
+    const gapPct=gap/bench;
+    const dailyLoss=gap>0?Math.round(gap*IMPACT_PER_UNIT[key]):0;
+    totalDailyLoss+=dailyLoss;
+    gaps.push({key,cur,bench,gap,dailyLoss,...meta});
+  }
+  gaps.sort((a,b)=>b.dailyLoss-a.dailyLoss);
+
+  // Render summary cards
+  const weeklyLoss=totalDailyLoss*7;
+  const topGap=gaps[0];
+  const legacyRows=DATA.filter(r=>r.sdk_version.includes('Legacy'));
+  const legacyRev=legacyRows.reduce((a,r)=>a+r.revenue,0);
+  const vectorRows=DATA.filter(r=>r.winning_dsp==='Vector AI');
+  const extRows=DATA.filter(r=>r.winning_dsp!=='Vector AI');
+  const vectorRoas=vectorRows.reduce((a,r)=>a+r.roas_d7,0)/vectorRows.length;
+  const extRoas=extRows.reduce((a,r)=>a+r.roas_d7,0)/extRows.length;
+
+  let html=`
+  <div class="rg-grid">
+    <div class="metric-card">
+      <div class="mc-label">Est. Daily Revenue Gap</div>
+      <div class="mc-value red">$${totalDailyLoss.toLocaleString()}</div>
+      <div class="mc-sub">vs full Unity stack</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">7-Day Gap (this period)</div>
+      <div class="mc-value red">$${weeklyLoss.toLocaleString()}</div>
+      <div class="mc-sub">based on actual funnel data</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">Biggest Leak</div>
+      <div class="mc-value white">${topGap.layer}</div>
+      <div class="mc-sub">${topGap.label} — $${topGap.dailyLoss.toLocaleString()}/day</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">Legacy SDK Revenue at Risk</div>
+      <div class="mc-value red">$${Math.round(legacyRev).toLocaleString()}</div>
+      <div class="mc-sub">7-day revenue on deprecated SDK</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">Vector AI D7 ROAS</div>
+      <div class="mc-value green">${(vectorRoas*100).toFixed(1)}%</div>
+      <div class="mc-sub">vs ${(extRoas*100).toFixed(1)}% all other DSPs</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">Actual 7-Day Revenue</div>
+      <div class="mc-value white">$${Math.round(tot.revenue).toLocaleString()}</div>
+      <div class="mc-sub">${tot.impressions.toLocaleString()} impressions</div>
+    </div>
+  </div>
+
+  <div class="gap-section">
+    <div class="section-title" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border2)">Layer-by-Layer Gap Analysis</div>
+    <div class="gap-row-header">
+      <span class="gh">Layer</span><span class="gh">Metric</span>
+      <span class="gh">Actual</span><span class="gh">Full Stack</span>
+      <span class="gh" style="text-align:right">Est. Gap/Day</span><span></span>
+    </div>`;
+
+  gaps.forEach(g=>{
+    const hasGap=g.dailyLoss>0;
+    const curFmt=g.unit==='$'?`$${g.cur.toFixed(2)}`:`${(g.cur*g.scale).toFixed(1)}${g.unit}`;
+    const benchFmt=g.unit==='$'?`$${g.bench.toFixed(2)}`:`${(g.bench*g.scale).toFixed(1)}${g.unit}`;
+    const color=PC[g.prod]||'#8b5cf6';
+    html+=`
+    <div class="gap-row-item" onclick="toggleGapRow(this)">
+      <span class="g-id">${g.layer}</span>
+      <div><div class="g-name">${g.label} <span class="prod-tag" style="background:${color}15;color:${color};border:1px solid ${color}30">${g.prod}</span></div></div>
+      <span class="g-cur">${curFmt}</span>
+      <span class="g-bench">${benchFmt}</span>
+      <span class="g-loss ${hasGap?'bad':'ok'}">${hasGap?'-$'+g.dailyLoss.toLocaleString()+'/day':'—'}</span>
+      <span class="g-chev">▶</span>
+    </div>
+    <div class="gap-detail-box">
+      <strong>Why the gap exists:</strong> ${g.why}<br><br>
+      <span class="fix-tag">FIX</span> ${g.fix}
+      ${hasGap?`<br><br><strong>Revenue math:</strong> Closing this gap = ~<strong>$${g.dailyLoss.toLocaleString()}/day</strong> recovered.`:''}
+    </div>`;
+  });
+  html+='</div>';
+
+  // AI analysis section
+  html+=`
+  <div class="ai-card">
+    <div class="ai-card-head">
+      <div class="ai-badge">✦ Claude Analysis</div>
+      <div class="ai-card-title">What the full Unity stack would have done differently</div>
+    </div>
+    <div class="ai-card-body" id="gapAiOutput">Generating analysis…</div>
+  </div>
+
+  <div>
+    <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border2)">Ranked Action Plan</div>
+    <div id="gapActions"></div>
+  </div>`;
+
+  document.getElementById('gapContent').innerHTML=html;
+
+  // Render action plan
+  const actionDescs={
+    ecpm:'Vector AI uses App A pre-bid behavioral signals unavailable to any external DSP. Your eCPM gap is the most direct evidence that bid optimization is missing. Enable Vector + Unity Analytics to unlock the signal.',
+    fill_rate:'LevelPlay\'s Show Recovery (v9.2.0) provides fallback ad delivery when first attempt fails. Migrating all mediation paths to LevelPlay closes the fill gap and increases revenue-bearing impressions.',
+    roas_d7:'The D7 ROAS gap will widen over time without the App B retraining loop. Without Acquire + Analytics + Engine all connected, Vector cannot improve. Competitors\' models compound while yours stays static.',
+    render_rate:'Legacy SDK v4.15.0 apps see degraded fill and render post-April 2026 deprecation. Migration to Unity Ads SDK v4.17.0 is now mandatory to maintain performance.',
+    cvr:'CVR gap signals bids are not targeting the right users. App A behavioral signals (level completion, session depth, payer history) in the bid enable Vector to predict high-LTV installs before a single impression is served.',
+    ctr:'CTR gap means creatives are not resonating with the right audiences. Unity Analytics feeds user engagement data back to creative selection — without it, underperforming creatives serve to everyone.',
+    win_rate:'Bid win rate below benchmark indicates LTV prediction is missing pre-bid data. Vector\'s LTV-informed bids correctly value high-LTV users — low win rate is a signal the model is working without its best features.',
+  };
+  const actContainer=document.getElementById('gapActions');
+  gaps.filter(g=>g.dailyLoss>0).slice(0,5).forEach((g,i)=>{
+    const color=PC[g.prod]||'#8b5cf6';
+    const div=document.createElement('div');
+    div.className='action-item';
+    div.innerHTML=`
+      <div class="a-rank">${i+1}</div>
+      <div class="a-body">
+        <div class="a-title">${g.fix.split('·')[0].trim()} <span class="prod-tag" style="background:${color}15;color:${color};border:1px solid ${color}30">${g.prod}</span></div>
+        <div class="a-desc">${actionDescs[g.key]||''}</div>
+        <div class="a-impact">▲ Est. +$${g.dailyLoss.toLocaleString()}/day recovered</div>
+      </div>`;
+    actContainer.appendChild(div);
+  });
+
+  // Call Claude for gap analysis
+  const prompt=buildGapPrompt(tot,gaps,totalDailyLoss,vectorRoas,extRoas);
+  streamAI(prompt,'gapAiOutput');
+}
+
+function toggleGapRow(row){
+  const isOpen=row.classList.contains('open');
+  document.querySelectorAll('.gap-row-item.open').forEach(r=>r.classList.remove('open'));
+  document.querySelectorAll('.gap-detail-box.on').forEach(d=>d.classList.remove('on'));
+  if(!isOpen){
+    row.classList.add('open');
+    row.nextElementSibling.classList.add('on');
+  }
+}
+
+function buildGapPrompt(tot,gaps,totalLoss,vectorRoas,extRoas){
+  const topGaps=gaps.filter(g=>g.dailyLoss>0).map(g=>`${g.label} (${g.layer}): actual ${g.unit==='$'?'$'+g.cur.toFixed(2):(g.cur*g.scale).toFixed(1)+g.unit} vs full-stack ${g.unit==='$'?'$'+g.bench.toFixed(2):(g.bench*g.scale).toFixed(1)+g.unit} = $${g.dailyLoss}/day gap`).join('\n');
+  return `You are a senior Unity Ads monetization expert analyzing a game developer's revenue gap.
+
+7-day actual funnel data:
+- Total impressions: ${tot.impressions.toLocaleString()}
+- Total revenue: $${Math.round(tot.revenue).toLocaleString()}
+- Avg eCPM: $${tot.ecpm.toFixed(2)}
+- Fill rate: ${(tot.fill_rate*100).toFixed(1)}%
+- Render rate: ${(tot.render_rate*100).toFixed(1)}%
+- D7 ROAS: ${(tot.roas_d7*100).toFixed(1)}%
+- Vector AI D7 ROAS: ${(vectorRoas*100).toFixed(1)}% vs ${(extRoas*100).toFixed(1)}% all other DSPs
+
+Estimated daily revenue gap vs full Unity stack: $${totalLoss.toLocaleString()}
+
+Layer-by-layer gaps:
+${topGaps}
+
+Write a direct, expert analysis (220-260 words) covering:
+1. The single most critical gap and the specific mechanism causing it
+2. How Vector AI's pre-bid App A signal advantage applies concretely to these numbers — use the actual ROAS differential
+3. The compounding retraining loop they are missing and what it means in dollar terms over 30 days
+4. One counterintuitive insight about their data that a developer would not notice without this analysis
+
+Write in flowing paragraphs, no bullet points. Be specific, reference actual numbers. Write like a PM who has seen this pattern hundreds of times and is being direct with a developer about what needs to change.`;
+}
+
+// ══════════════════════
+// PAGE 3 — INTELLIGENCE
+// ══════════════════════
+let intelLoaded=false;
+const INSIGHT_CONFIGS=[
+  {id:'stack-health',title:'Stack Health Alert',category:'Stack Gap',sev:'critical',full:true,
+   prompt:(d)=>`You are a Unity Ads expert. Analyze this 7-day data and write a stack health alert (150-180 words) covering: (1) which SDK versions are in use and the specific fill rate degradation from Legacy v4.15.0 vs current v4.17.0, (2) which mediation paths are underperforming vs LevelPlay benchmark, (3) the most urgent migration action. Use the actual numbers. Data summary: ${d}. No bullets. Direct, specific, expert tone.`},
+  {id:'vector-moat',title:'Vector AI Moat Analysis',category:'Monetization Outcome',sev:'info',full:false,
+   prompt:(d)=>`You are a Unity Ads expert. Write a Vector AI competitive analysis (140-170 words) showing: (1) Vector AI win rate and D7 ROAS vs all other DSPs using actual numbers, (2) why Vector wins more in mid-core/RPG genres specifically (App A pre-bid signal advantage), (3) what this means for the developer's UA strategy. Data: ${d}. No bullets. Expert tone.`},
+  {id:'geo-opportunity',title:'Geo Revenue Opportunity',category:'Data-Driven Decision',sev:'warning',full:false,
+   prompt:(d)=>`You are a Unity Ads expert. Write a geo opportunity insight (130-160 words) identifying: (1) which countries are over/under-indexed for eCPM vs volume, (2) the highest eCPM × volume opportunity, (3) one specific targeting recommendation. Data: ${d}. No bullets.`},
+  {id:'format-perf',title:'Ad Format Performance',category:'Monetization Outcome',sev:'info',full:false,
+   prompt:(d)=>`You are a Unity Ads expert. Write an ad format performance insight (130-160 words) comparing Rewarded vs Interstitial vs Banner across eCPM, CTR, and revenue contribution. Identify which format is underallocated relative to its performance. Data: ${d}. No bullets.`},
+  {id:'data-quality',title:'Data Quality & Integration',category:'Data Quality',sev:'warning',full:false,
+   prompt:(d)=>`You are a Unity Ads expert. Write a data quality insight (130-160 words) covering: (1) SDK version fragmentation risk, (2) mediation path data gaps, (3) what missing signals mean for Vector model quality. Data: ${d}. No bullets.`},
+  {id:'counterfactual',title:'7-Day Counterfactual Revenue',category:'Revenue Opportunity',sev:'critical',full:false,
+   prompt:(d)=>`You are a Unity Ads expert. Write a counterfactual revenue analysis (140-170 words): if this developer had used the full Unity stack (Engine + Analytics + SDK v4.17.0 + LevelPlay + Vector AI + Acquire) for the past 7 days, how much more revenue would they have generated? Use actual fill rate gap, eCPM gap, and ROAS differential to build the estimate. Show your reasoning. Data: ${d}. No bullets.`},
+  {id:'publisher-compare',title:'Publisher Benchmark',category:'Developer Perspective',sev:'info',full:false,
+   prompt:(d)=>`You are a Unity Ads expert. Write a publisher performance benchmark insight (130-160 words) comparing the best and worst performing publishers in the dataset across eCPM, fill rate, and ROAS. Identify what the top performer is doing differently. Data: ${d}. No bullets.`},
+];
+
+function buildDataSummary(filter=()=>true){
+  if(!DATA.length)return 'No data available';
+  const rows=DATA.filter(filter);
+  const sum=(k)=>rows.reduce((a,r)=>a+(r[k]||0),0);
+  const avg=(k)=>rows.length?sum(k)/rows.length:0;
+
+  // By DSP
+  const dsps=[...new Set(rows.map(r=>r.winning_dsp))];
+  const dspStats=dsps.map(d=>{
+    const dr=rows.filter(r=>r.winning_dsp===d);
+    return `${d}: win_rate=${(dr.length/rows.length*100).toFixed(1)}%, avg_roas_d7=${(dr.reduce((a,r)=>a+r.roas_d7,0)/dr.length*100).toFixed(1)}%`;
+  }).join('; ');
+
+  // By country (top 5)
+  const countryRev={};
+  rows.forEach(r=>{countryRev[r.country]=(countryRev[r.country]||0)+r.revenue});
+  const topCountries=Object.entries(countryRev).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([c,v])=>`${c}:$${v.toFixed(0)}`).join(',');
+
+  // By format
+  const fmts=[...new Set(rows.map(r=>r.ad_format))];
+  const fmtStats=fmts.map(f=>{
+    const fr=rows.filter(r=>r.ad_format===f);
+    return `${f}: ecpm=$${(fr.reduce((a,r)=>a+r.ecpm,0)/fr.length).toFixed(2)}, ctr=${(fr.reduce((a,r)=>a+r.ctr,0)/fr.length*100).toFixed(2)}%, rev=$${fr.reduce((a,r)=>a+r.revenue,0).toFixed(0)}`;
+  }).join('; ');
+
+  // By SDK
+  const sdks=[...new Set(rows.map(r=>r.sdk_version))];
+  const sdkStats=sdks.map(s=>{
+    const sr=rows.filter(r=>r.sdk_version===s);
+    return `${s.slice(-10)}: fill=${(sr.reduce((a,r)=>a+r.fill_rate,0)/sr.length*100).toFixed(1)}%, render=${(sr.reduce((a,r)=>a+r.render_rate,0)/sr.length*100).toFixed(1)}%`;
+  }).join('; ');
+
+  // By publisher
+  const pubs=[...new Set(rows.map(r=>r.publisher_app))];
+  const pubStats=pubs.map(p=>{
+    const pr=rows.filter(r=>r.publisher_app===p);
+    return `${p}: ecpm=$${(pr.reduce((a,r)=>a+r.ecpm,0)/pr.length).toFixed(2)}, fill=${(pr.reduce((a,r)=>a+r.fill_rate,0)/pr.length*100).toFixed(1)}%, roas_d7=${(pr.reduce((a,r)=>a+r.roas_d7,0)/pr.length*100).toFixed(1)}%`;
+  }).join('; ');
+
+  return `Records:${rows.length}, Period:2026-04-21→2026-04-27, Impressions:${sum('impressions').toLocaleString()}, Revenue:$${sum('revenue').toFixed(0)}, AvgECPM:$${avg('ecpm').toFixed(2)}, FillRate:${(avg('fill_rate')*100).toFixed(1)}%, RenderRate:${(avg('render_rate')*100).toFixed(1)}%, CTR:${(avg('ctr')*100).toFixed(2)}%, CVR:${(avg('cvr')*100).toFixed(2)}%, D7ROAS:${(avg('roas_d7')*100).toFixed(1)}%, D28ROAS:${(avg('roas_d28')*100).toFixed(1)}%. DSPs:[${dspStats}]. Countries(by rev):[${topCountries}]. Formats:[${fmtStats}]. SDKVersions:[${sdkStats}]. Publishers:[${pubStats}].`;
+}
+
+async function loadIntel(){
+  intelLoaded=true;
+  if(!DATA.length)await loadData();
+  renderIntelCards();
+}
+
+function renderIntelCards(){
+  const pubFilter=document.getElementById('pubFilter')?.value||'all';
+  const fmtFilter=document.getElementById('fmtFilter')?.value||'all';
+  const filter=r=>(pubFilter==='all'||r.publisher_app===pubFilter)&&(fmtFilter==='all'||r.ad_format===fmtFilter);
+  const dataSummary=buildDataSummary(filter);
+
+  const sevColor={critical:'var(--red)',warning:'var(--amber)',info:'var(--levelplay)',positive:'var(--green)'};
+  let html='<div class="intel-grid">';
+  INSIGHT_CONFIGS.forEach(cfg=>{
+    html+=`<div class="intel-card${cfg.full?' full':''}">
+      <div class="ic-head">
+        <div class="ic-category"><div class="ic-sev ${cfg.sev}" style="background:${sevColor[cfg.sev]};box-shadow:0 0 8px ${sevColor[cfg.sev]}40"></div>${cfg.category}</div>
+        <div class="thumb-row">
+          <button class="thumb-btn" onclick="thumbCard(this,'up')">👍</button>
+          <button class="thumb-btn" onclick="thumbCard(this,'down')">👎</button>
+        </div>
+      </div>
+      <div class="ic-title">${cfg.title}</div>
+      <div class="ic-body" id="intel-${cfg.id}"><span style="color:var(--muted);font-family:'DM Mono',monospace;font-size:10px">Generating insight…</span></div>
+      <div class="ic-foot">
+        <div class="ic-action" onclick="regenerateCard('${cfg.id}','${dataSummary.replace(/'/g,"\\'")}')">↺ regenerate</div>
+      </div>
+    </div>`;
+  });
+  html+='</div>';
+  document.getElementById('intelContent').innerHTML=html;
+
+  // Fire all insight calls
+  INSIGHT_CONFIGS.forEach(cfg=>{
+    const prompt=cfg.prompt(dataSummary);
+    streamAI(prompt,`intel-${cfg.id}`);
+  });
+}
+
+function filterIntel(){renderIntelCards();}
+
+function refreshIntel(){
+  document.getElementById('intelContent').innerHTML='<div class="spin-wrap"><div class="spinner"></div><div class="spin-lbl">Refreshing intelligence…</div></div>';
+  setTimeout(()=>renderIntelCards(),300);
+}
+
+function regenerateCard(id,data){
+  const el=document.getElementById(`intel-${id}`);
+  el.textContent='Regenerating…';
+  const cfg=INSIGHT_CONFIGS.find(c=>c.id===id);
+  if(cfg)streamAI(cfg.prompt(data),`intel-${id}`);
+}
+
+function thumbCard(btn,dir){
+  btn.parentElement.querySelectorAll('.thumb-btn').forEach(b=>{b.classList.remove('active-up','active-dn')});
+  btn.classList.add(dir==='up'?'active-up':'active-dn');
+}
+
+// ══════════════════════
+// CLAUDE API
+// ══════════════════════
+async function streamAI(prompt,targetId){
+  const el=document.getElementById(targetId);
+  if(!el)return;
+  el.textContent='';
+  try{
+    const response=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        messages:[{role:'user',content:prompt}]
+      })
+    });
+    const data=await response.json();
+    const text=data.content?.find(b=>b.type==='text')?.text||'Analysis unavailable.';
+    // Typewriter
+    let i=0;
+    el.textContent='';
+    const interval=setInterval(()=>{
+      if(i<text.length){el.textContent+=text[i++];}
+      else clearInterval(interval);
+    },6);
+  }catch(e){
+    el.textContent='Could not connect to analysis engine. Ensure unity_prism_data.json is served from the same origin.';
+  }
+}
+
+// ══════════════════════
+// INIT
+// ══════════════════════
+loadData();
+</script>
+</body>
+</html>
