@@ -1123,7 +1123,7 @@ function generateBriefing(){
 Publisher: ${pub === 'all' ? 'All Publishers (Portfolio)' : pub}
 Briefing type: ${typeLabels[type]}
 Audience: ${audienceLabels[audience]}
-Date: April 27, 2026 (7-day period: Apr 21-27 2026)
+Date: ${_mo[_n.getMonth()]+' '+_n.getDate()+', '+_n.getFullYear()} (7-day period: ${_mo[_s.getMonth()]+' '+_s.getDate()}–${_mo[_n.getMonth()]+' '+_n.getDate()+' '+_n.getFullYear()})
 
 Data for ${pub === 'all' ? 'all publishers' : pub}:
 - Impressions: ${src.impressions.toLocaleString()}
@@ -1150,7 +1150,9 @@ Structure it with clear sections using headers. Include:
 Tone: direct and specific. Reference actual numbers. No generic advice. No mention of competitors by name — refer to them as "external DSPs". Write in flowing professional prose under each header, not bullet points. Maximum 400 words. Make it something a PM could genuinely send to a publisher account manager or bring into a weekly review meeting.`;
 
   streamAI(prompt, null, (text) => {
-    const date = new Date().toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
+    const _n=new Date(),_s=new Date(_n);_s.setDate(_n.getDate()-6);
+    const _mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const date=_mo[_s.getMonth()]+' '+_s.getDate()+'–'+_mo[_n.getMonth()]+' '+_n.getDate()+', '+_n.getFullYear();
     outputEl.innerHTML = `
       <div class="bo-head">
         <div class="bo-head-title">${typeLabels[type]} — ${pub === 'all' ? 'All Publishers' : pub}</div>
