@@ -1102,7 +1102,7 @@ function generateBriefing(){
   if(btn) btn.disabled = true;
 
   const outputEl = document.getElementById('briefing-output');
-  outputEl.innerHTML = '<div class="bo-spin"><div class="spinner"></div><div class="sl2">Connecting to Claude API...</div><div style="font-family:Inter,sans-serif;font-size:10px;color:var(--muted);margin-top:8px">If this takes >10s, check Cloudflare Worker is deployed</div></div>';
+  outputEl.innerHTML = '<div class="bo-spin"><div class="spinner"></div><div class="sl2">Generating briefing—usually 10–20s…</div></div>';
 
   const src = pub === 'all' ? D.total : (D.by_publisher[pub] || D.total);
   const _PSM={'Rollic Games':{mmp:96,fb:72},'Voodoo':{mmp:92,fb:45},'Scopely':{mmp:98,fb:81},'Jam City':{mmp:89,fb:33},'Zynga':{mmp:95,fb:58},'Miniclip':{mmp:91,fb:40}};
@@ -1665,11 +1665,15 @@ async function streamAI(prompt,tid,callback,staticFallback){
   if(!el&&!callback)return;
   if(el)el.textContent='';
   try{
+    const controller=new AbortController();
+    const timeout=setTimeout(()=>controller.abort(),30000);
     const r=await fetch("https://ai-product-foundryworkersdev.ai-product-foundry.workers.dev/v1/messages",{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1500,messages:[{role:'user',content:prompt}]})
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1500,messages:[{role:'user',content:prompt}]}),
+      signal:controller.signal
     });
+    clearTimeout(timeout);
     const data=await r.json();
     if(data.error){throw new Error(data.error.message||JSON.stringify(data.error));}
     const text=data.content?.find(b=>b.type==='text')?.text||'No response received.';
@@ -1679,7 +1683,7 @@ async function streamAI(prompt,tid,callback,staticFallback){
       if(el)el.innerHTML=staticFallback;
       if(callback)callback(staticFallback);
     } else {
-      const errMsg='API Error: '+e.message;
+      const errMsg=e.name==='AbortError'?'Request timed out after 30s. The Claude API may be slow — please try again.':'API Error: '+e.message;
       if(el)el.textContent=errMsg;
       if(callback)callback(errMsg);
     }
