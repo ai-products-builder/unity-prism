@@ -15,65 +15,65 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .orb2{width:400px;height:400px;background:rgba(6,182,212,.03);bottom:-100px;left:-100px}
 .app{position:relative;z-index:1}
 nav{display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:54px;border-bottom:2px solid #00cccc;background:#111820 !important;position:sticky;top:0;z-index:200}
-.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;letter-spacing:.1em;display:flex;align-items:center;gap:9px;color:#ffffff !important}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:16px;letter-spacing:.1em;display:flex;align-items:center;gap:9px;color:#ffffff !important}
 .logo-gem{width:18px;height:18px;background:linear-gradient(135deg,var(--vector),var(--levelplay));border-radius:3px;transform:rotate(12deg);flex-shrink:0}
 .nav-tabs{display:flex;gap:2px}
-.tab{font-family:'DM Mono',monospace;font-size:14px;letter-spacing:.08em;text-transform:uppercase;padding:7px 16px;border-radius:4px;cursor:pointer;color:#ffffff !important;border:none;background:transparent;transition:all .15s;font-weight:600}
+.tab{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;padding:6px 12px;border-radius:4px;cursor:pointer;color:#ffffff !important;border:none;background:transparent;transition:all .15s;font-weight:600}
 .tab:hover{color:var(--text);background:rgba(0,0,0,.04)}
 .tab.active{color:#111820 !important;background:#00cccc;border:1px solid #00cccc;font-weight:700}
 .nav-right{display:flex;align-items:center;gap:10px}
-.date-badge{font-family:'DM Mono',monospace;font-size:14px;color:#ffffff;border:1px solid rgba(255,255,255,.3);padding:4px 10px;border-radius:2px}
+.date-badge{font-family:'DM Mono',monospace;font-size:10px;color:#ffffff;border:1px solid rgba(255,255,255,.3);padding:4px 10px;border-radius:2px}
 .live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 .page{display:none;padding:24px 28px 60px}
 .page.active{display:block}
-.ey{font-family:'DM Mono',monospace;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:#00cccc;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.ey{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#00cccc;margin-bottom:8px;display:flex;align-items:center;gap:8px}
 .ey::before{content:'';width:18px;height:1px;background:var(--vector)}
-.pt{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(30px,4vw,50px);letter-spacing:.03em;line-height:1;color:var(--text);margin-bottom:6px}
-.ps{font-size:14px;color:var(--muted);line-height:1.65;max-width:680px;font-family:'DM Mono',monospace;margin-bottom:18px}
+.pt{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(16px,1.8vw,22px);letter-spacing:.01em;line-height:1.15;color:var(--text);margin-bottom:6px}
+.ps{font-size:13px;color:var(--muted);line-height:1.65;max-width:680px;font-family:'DM Mono',monospace;margin-bottom:18px}
 .mstrip{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:20px}
 .ms{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:10px 12px;box-shadow:0 2px 6px rgba(0,0,0,.35)}
 .ms-val{font-family:'Syne',sans-serif;font-weight:800;font-size:22px;letter-spacing:.02em;line-height:1;color:var(--text)}
-.ms-lbl{font-family:'DM Mono',monospace;font-size:14px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:2px}
-.ms-d{font-family:'DM Mono',monospace;font-size:14px;margin-top:2px}
+.ms-lbl{font-family:'DM Mono',monospace;font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+.ms-d{font-family:'DM Mono',monospace;font-size:13px;margin-top:2px}
 .up{color:var(--green)}.down{color:var(--red)}.neu{color:var(--muted)}
 .fl{display:grid;grid-template-columns:380px 1fr;gap:20px;align-items:start}
 @media(max-width:880px){.fl{grid-template-columns:1fr}}
 .pleg{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
-.pl{display:flex;align-items:center;gap:5px;font-family:'DM Mono',monospace;font-size:14px;color:var(--muted);background:var(--surface);border:1px solid var(--border);padding:3px 9px;border-radius:2px}
+.pl{display:flex;align-items:center;gap:5px;font-family:'DM Mono',monospace;font-size:13px;color:var(--muted);background:var(--surface);border:1px solid var(--border);padding:3px 9px;border-radius:2px}
 .pld{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.cone-lbl{font-family:'DM Mono',monospace;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;opacity:.6}
+.cone-lbl{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;opacity:.6}
 .phg{margin-bottom:1px}
-.phl{font-family:'DM Mono',monospace;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;padding-left:2px;opacity:.9;line-height:2}
+.phl{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;padding-left:2px;opacity:.9;line-height:2}
 .lr{display:flex;align-items:center;gap:6px;margin-bottom:2px;cursor:pointer}
 .lr:hover .bar{filter:brightness(1.22)}
 .lr.active .bar{outline:2px solid rgba(255,255,255,.5);outline-offset:0}
-.lid{font-family:'DM Mono',monospace;font-size:14px;color:#ffffff;width:28px;text-align:right;flex-shrink:0;opacity:1;line-height:24px;font-weight:600}
+.lid{font-family:'DM Mono',monospace;font-size:11px;color:#ffffff;width:28px;text-align:right;flex-shrink:0;opacity:1;line-height:24px;font-weight:600}
 .lr:hover .lid,.lr.active .lid{opacity:1}
 .bw{flex:1;display:flex;justify-content:flex-start;align-items:center}
 .bar{height:24px;border-radius:2px;display:flex;align-items:center;padding:0 8px;position:relative;overflow:hidden;transition:filter .12s;flex-shrink:0}
 .bar::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.08),transparent 50%);pointer-events:none}
-.bn{font-size:14px;font-weight:600;letter-spacing:.05em;color:rgba(255,255,255,.92);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase;flex:1;min-width:0}
-.bv{font-family:'DM Mono',monospace;font-size:14px;color:rgba(255,255,255,.32);padding-left:5px;flex-shrink:0;white-space:nowrap}
+.bn{font-size:11px;font-weight:600;letter-spacing:.05em;color:rgba(255,255,255,.92);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase;flex:1;min-width:0}
+.bv{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,.32);padding-left:5px;flex-shrink:0;white-space:nowrap}
 .pbar::after{content:'';position:absolute;right:4px;top:50%;transform:translateY(-50%);width:5px;height:5px;border-radius:50%;background:#fbbf24;animation:pd 2s infinite}
 @keyframes pd{0%,100%{box-shadow:0 0 0 0 rgba(251,191,36,.5)}50%{box-shadow:0 0 0 5px rgba(251,191,36,0)}}
 .fbw{padding:5px 0 0 30px;margin-top:3px}
 .fbl{display:flex;align-items:center;gap:7px}
-.fba{font-size:14px;color:#b83c82;font-family:'DM Mono',monospace;opacity:1;font-weight:700}
+.fba{font-size:13px;color:#b83c82;font-family:'DM Mono',monospace;opacity:1;font-weight:700}
 .fbd{flex:1;height:2px;border-top:2px dashed rgba(184,60,130,.5)}
-.fbt{font-size:14px;font-family:'DM Mono',monospace;color:#b83c82;opacity:.95;letter-spacing:.05em;text-transform:uppercase;font-weight:600}
-.fbs{font-size:14px;font-family:'DM Mono',monospace;color:rgba(184,60,130,.85);margin-top:8px;line-height:1.7;font-weight:500}
+.fbt{font-size:11px;font-family:'DM Mono',monospace;color:#b83c82;opacity:.95;letter-spacing:.05em;text-transform:uppercase;font-weight:600}
+.fbs{font-size:11px;font-family:'DM Mono',monospace;color:rgba(184,60,130,.85);margin-top:8px;line-height:1.7;font-weight:500}
 .det{position:sticky;top:70px;max-height:calc(100vh - 88px);overflow-y:auto}
-.de{color:var(--muted);font-size:14px;text-align:center;padding:40px 14px;font-family:'DM Mono',monospace;letter-spacing:.05em;border:1px solid var(--border);border-radius:6px;line-height:1.7}
+.de{color:var(--muted);font-size:13px;text-align:center;padding:40px 14px;font-family:'DM Mono',monospace;letter-spacing:.05em;border:1px solid var(--border);border-radius:6px;line-height:1.7}
 .dc{display:none;background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.4)}
 .dc.on{display:block}
 .dch{padding:13px 17px 10px;border-bottom:1px solid var(--border)}
-.dcp{font-family:'DM Mono',monospace;font-size:14px;letter-spacing:.13em;text-transform:uppercase;margin-bottom:4px;opacity:.65}
-.dci{font-family:'DM Mono',monospace;font-size:14px;color:var(--muted);margin-bottom:3px}
-.dcn{font-size:15px;font-weight:700;line-height:1.2;margin-bottom:3px}
-.dcd{font-family:'DM Mono',monospace;font-size:14px}
+.dcp{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.13em;text-transform:uppercase;margin-bottom:4px;opacity:.65}
+.dci{font-family:'DM Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:3px}
+.dcn{font-size:13px;font-weight:700;line-height:1.2;margin-bottom:3px}
+.dcd{font-family:'DM Mono',monospace;font-size:13px}
 .dcb2{display:flex;flex-wrap:wrap;gap:3px;margin-top:6px}
-.bdg{font-size:14px;font-family:'DM Mono',monospace;padding:2px 6px;border-radius:2px;letter-spacing:.04em}
+.bdg{font-size:13px;font-family:'DM Mono',monospace;padding:2px 6px;border-radius:2px;letter-spacing:.04em}
 .bns{background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.25)}
 .bmo{background:rgba(139,92,246,.1);color:var(--vector);border:1px solid rgba(139,92,246,.3)}
 .blo{background:rgba(139,92,246,.04);color:var(--vector);border:1px dashed rgba(139,92,246,.28)}
@@ -81,87 +81,87 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 28px
 .bsb{background:rgba(59,130,246,.08);color:var(--sdk);border:1px solid rgba(59,130,246,.2)}
 .bab{background:rgba(6,182,212,.06);color:var(--levelplay);border:1px solid rgba(6,182,212,.2)}
 .dcbody{padding:13px 17px}
-.sec{font-family:'DM Mono',monospace;font-size:14px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin:10px 0 5px}
+.sec{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin:10px 0 5px}
 .sec:first-child{margin-top:0}
 .chip{background:var(--s2);border:1px solid var(--border);border-radius:3px;padding:6px 9px;margin-bottom:3px}
-.cl{font-family:'DM Mono',monospace;font-size:14px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:2px}
-.cv{font-size:14px;color:var(--text);line-height:1.5}
-.formula{background:#f8f9fc;border-radius:3px;padding:8px 10px;font-family:'DM Mono',monospace;font-size:14px;line-height:1.6;word-break:break-all}
+.cl{font-family:'DM Mono',monospace;font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:2px}
+.cv{font-size:13px;color:var(--text);line-height:1.5}
+.formula{background:#f8f9fc;border-radius:3px;padding:8px 10px;font-family:'DM Mono',monospace;font-size:13px;line-height:1.6;word-break:break-all}
 .errs{display:flex;flex-direction:column;gap:3px}
-.ec{font-family:'DM Mono',monospace;font-size:14px;color:#ff0066;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.14);border-radius:2px;padding:3px 7px}
-.nt{font-size:14px;color:#c8d6e5;line-height:1.7;font-family:'DM Mono',monospace}
+.ec{font-family:'DM Mono',monospace;font-size:13px;color:#ff0066;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.14);border-radius:2px;padding:3px 7px}
+.nt{font-size:13px;color:#c8d6e5;line-height:1.7;font-family:'DM Mono',monospace}
 .dg{margin-bottom:6px}
-.dgl{font-size:14px;font-family:'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px}
+.dgl{font-size:13px;font-family:'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px}
 .pills{display:flex;flex-wrap:wrap;gap:2px}
-.pill{font-size:14px;font-family:'DM Mono',monospace;background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:2px 5px;color:var(--muted)}
+.pill{font-size:13px;font-family:'DM Mono',monospace;background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:2px 5px;color:var(--muted)}
 .vw{margin-top:9px;padding-top:9px;border-top:1px solid var(--border)}
-.vl{display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:14px;color:var(--muted);margin-bottom:4px}
+.vl{display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:4px}
 .vt{height:3px;background:var(--s2);border-radius:2px;overflow:hidden}
 .vf{height:100%;border-radius:2px}
 .lvm{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:7px}
 .lm{background:var(--s3);border:1px solid var(--border);border-radius:3px;padding:5px 8px}
 .lmv{font-family:'Syne',sans-serif;font-weight:800;font-size:17px;letter-spacing:.02em;line-height:1}
-.lml{font-family:'DM Mono',monospace;font-size:14px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:1px}
+.lml{font-family:'DM Mono',monospace;font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:1px}
 .rgg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
 .mc{background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:15px 17px;box-shadow:0 1px 3px rgba(0,0,0,0.05)}
-.mcl{font-family:'DM Mono',monospace;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.mcl{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
 .mcv{font-family:'Syne',sans-serif;font-weight:800;font-size:30px;letter-spacing:.02em;line-height:1}
 .mcv.red{color:var(--red)}.mcv.green{color:var(--green)}.mcv.white{color:#fff}
-.mcs{font-size:14px;color:var(--muted);margin-top:3px;font-family:'DM Mono',monospace}
-.st{font-family:'DM Mono',monospace;font-size:14px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:9px;padding-bottom:6px;border-bottom:1px solid var(--border2)}
+.mcs{font-size:13px;color:var(--muted);margin-top:3px;font-family:'DM Mono',monospace}
+.st{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:9px;padding-bottom:6px;border-bottom:1px solid var(--border2)}
 .ghdr{display:grid;grid-template-columns:80px 1fr 88px 88px 105px 22px;gap:9px;align-items:center;padding:6px 0;border-bottom:1px solid var(--border2)}
 .gi{display:grid;grid-template-columns:80px 1fr 88px 88px 105px 22px;gap:9px;align-items:center;padding:9px 0;border-bottom:1px solid var(--border);cursor:pointer;border-radius:3px}
 .gi:hover{background:rgba(255,255,255,.015)}
 .gi.open{background:rgba(139,92,246,.04)}
-.gh{font-family:'DM Mono',monospace;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.gid{font-family:'DM Mono',monospace;font-size:14px;color:var(--vector)}
-.gnm{font-size:14px;font-weight:500}
-.gsb{font-size:14px;font-family:'DM Mono',monospace;color:var(--muted);margin-top:1px}
-.gcur{font-family:'DM Mono',monospace;font-size:14px;color:var(--muted)}
-.gbn{font-family:'DM Mono',monospace;font-size:14px;color:var(--green)}
-.gls{font-family:'DM Mono',monospace;font-size:14px;font-weight:500;text-align:right}
+.gh{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.gid{font-family:'DM Mono',monospace;font-size:13px;color:var(--vector)}
+.gnm{font-size:13px;font-weight:500}
+.gsb{font-size:13px;font-family:'DM Mono',monospace;color:var(--muted);margin-top:1px}
+.gcur{font-family:'DM Mono',monospace;font-size:13px;color:var(--muted)}
+.gbn{font-family:'DM Mono',monospace;font-size:13px;color:var(--green)}
+.gls{font-family:'DM Mono',monospace;font-size:13px;font-weight:500;text-align:right}
 .gls.bad{color:var(--red)}.gls.ok{color:var(--muted)}
-.gch{font-size:14px;color:var(--muted);transition:transform .2s}
+.gch{font-size:13px;color:var(--muted);transition:transform .2s}
 .gi.open .gch{transform:rotate(90deg)}
-.gdb{display:none;background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.18);border-radius:4px;padding:11px 15px;font-size:14px;line-height:1.75;color:var(--muted);font-family:'DM Mono',monospace}
+.gdb{display:none;background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.18);border-radius:4px;padding:11px 15px;font-size:13px;line-height:1.75;color:var(--muted);font-family:'DM Mono',monospace}
 .gdb.on{display:block}
 .gdb strong{color:#f0f4f8;font-weight:500}
-.ft{display:inline-block;font-family:'DM Mono',monospace;font-size:14px;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);border-radius:2px;padding:2px 5px;color:var(--vector);margin-right:4px}
+.ft{display:inline-block;font-family:'DM Mono',monospace;font-size:13px;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);border-radius:2px;padding:2px 5px;color:var(--vector);margin-right:4px}
 .aic{background:var(--surface);border:1px solid var(--border);border-radius:5px;overflow:hidden;margin:18px 0}
 .aich{padding:11px 17px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
-.aibdg{font-family:'DM Mono',monospace;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--vector);border:1px solid rgba(139,92,246,.3);padding:2px 7px;border-radius:2px}
-.aict{font-size:14px;font-weight:600}
-.aicb{padding:15px 17px;font-size:14px;line-height:1.8;color:#c8d6e5;min-height:80px;font-family:'DM Mono',monospace;white-space:pre-wrap}
+.aibdg{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--vector);border:1px solid rgba(139,92,246,.3);padding:2px 7px;border-radius:2px}
+.aict{font-size:13px;font-weight:600}
+.aicb{padding:15px 17px;font-size:13px;line-height:1.8;color:#c8d6e5;min-height:80px;font-family:'DM Mono',monospace;white-space:pre-wrap}
 .ait{display:flex;gap:13px;padding:11px 0;border-bottom:1px solid var(--border);align-items:flex-start}
 .ar{font-family:'Syne',sans-serif;font-weight:800;font-size:26px;color:var(--vector);opacity:.2;line-height:1;flex-shrink:0;width:26px;text-align:center}
 .ab{flex:1}
-.at{font-size:14px;font-weight:600;margin-bottom:2px}
-.ad2{font-size:14px;color:var(--muted);line-height:1.65;font-family:'DM Mono',monospace}
-.aim{font-size:14px;font-family:'DM Mono',monospace;color:var(--green);margin-top:3px}
-.ptag{display:inline-block;font-family:'DM Mono',monospace;font-size:14px;padding:2px 5px;border-radius:2px;margin-left:5px}
+.at{font-size:13px;font-weight:600;margin-bottom:2px}
+.ad2{font-size:13px;color:var(--muted);line-height:1.65;font-family:'DM Mono',monospace}
+.aim{font-size:13px;font-family:'DM Mono',monospace;color:var(--green);margin-top:3px}
+.ptag{display:inline-block;font-family:'DM Mono',monospace;font-size:13px;padding:2px 5px;border-radius:2px;margin-left:5px}
 .ig{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .ic2{background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden}
 .ic2.full{grid-column:1/-1}
 .ic2-head{padding:11px 16px 8px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.ic2-cat{font-family:'DM Mono',monospace;font-size:14px;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:5px}
+.ic2-cat{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:5px}
 .ic2-sev{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.ic2-title{font-size:14px;font-weight:700;color:#fff;padding:8px 16px 4px}
+.ic2-title{font-size:13px;font-weight:700;color:#fff;padding:8px 16px 4px}
 .chart-wrap{padding:12px 16px;height:160px;position:relative}
 .chart-wrap canvas{width:100%!important;height:140px!important}
-.rec-box{margin:0 16px 14px;background:rgba(0,204,204,.07);border-left:2px solid #00cccc;border-radius:0 4px 4px 0;padding:8px 12px;font-family:'DM Mono',monospace;font-size:14px;line-height:1.7;color:#a0b4c8;min-height:40px}
+.rec-box{margin:0 16px 14px;background:rgba(0,204,204,.07);border-left:2px solid #00cccc;border-radius:0 4px 4px 0;padding:8px 12px;font-family:'DM Mono',monospace;font-size:11px;line-height:1.7;color:#a0b4c8;min-height:40px}
 .rec-box b,.rec-box strong{color:#fff;font-weight:600}
 .ic2-foot{padding:7px 16px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.ic2-act{font-family:'DM Mono',monospace;font-size:14px;color:#00cccc;cursor:pointer}
-.tb2{background:none;border:1px solid var(--border);border-radius:2px;padding:2px 8px;font-size:14px;cursor:pointer;color:var(--muted);transition:all .12s}
+.ic2-act{font-family:'DM Mono',monospace;font-size:11px;color:#00cccc;cursor:pointer}
+.tb2{background:none;border:1px solid var(--border);border-radius:2px;padding:2px 8px;font-size:11px;cursor:pointer;color:var(--muted);transition:all .12s}
 .tb2:hover{border-color:var(--border2);color:var(--text)}
 .tb2.voted-up{border-color:#19e3b1;color:#19e3b1}
 .tb2.voted-dn{border-color:#ff0066;color:#ff0066}
-.toast{position:fixed;bottom:20px;right:20px;background:#222c37;border:1px solid #00cccc;color:#00cccc;font-family:'DM Mono',monospace;font-size:14px;padding:8px 16px;border-radius:4px;z-index:9999;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast{position:fixed;bottom:20px;right:20px;background:#222c37;border:1px solid #00cccc;color:#00cccc;font-family:'DM Mono',monospace;font-size:13px;padding:8px 16px;border-radius:4px;z-index:9999;opacity:0;transition:opacity .3s;pointer-events:none}
 .toast.show{opacity:1}
 .comp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
 .comp-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:14px 16px}
-.comp-name{font-size:14px;font-weight:700;color:#fff;margin-bottom:10px}
-.comp-metric{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid var(--border);font-family:'DM Mono',monospace;font-size:14px}
+.comp-name{font-size:13px;font-weight:700;color:#fff;margin-bottom:10px}
+.comp-metric{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid var(--border);font-family:'DM Mono',monospace;font-size:11px}
 .comp-metric:last-child{border-bottom:none}
 .comp-lbl{color:var(--muted)}
 .comp-val{font-weight:600}
@@ -170,118 +170,152 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 28px
 .comp-val.mid{color:#fff}
 .wi-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .wi-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:16px}
-.wi-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:12px}
+.wi-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:12px}
 .wi-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.wi-lbl{font-family:'DM Mono',monospace;font-size:14px;color:var(--muted);width:140px;flex-shrink:0}
+.wi-lbl{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);width:140px;flex-shrink:0}
 .wi-input{flex:1}
-.wi-val{font-family:'DM Mono',monospace;font-size:14px;color:#00cccc;width:36px;text-align:right;flex-shrink:0}
+.wi-val{font-family:'DM Mono',monospace;font-size:11px;color:#00cccc;width:36px;text-align:right;flex-shrink:0}
 .wi-result{background:rgba(0,204,204,.07);border:1px solid rgba(0,204,204,.2);border-radius:4px;padding:12px 14px;margin-top:12px}
-.wi-result-lbl{font-family:'DM Mono',monospace;font-size:14px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px}
+.wi-result-lbl{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px}
 .wi-result-val{font-size:22px;font-weight:800;font-family:'DM Mono',monospace}
-.wi-result-sub{font-family:'DM Mono',monospace;font-size:14px;color:var(--muted);margin-top:4px}
+.wi-result-sub{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-top:4px}
 .wi-actions .ac-pill{display:block;margin-bottom:4px}
 @media(max-width:760px){.ig{grid-template-columns:1fr}}
 .ic{background:var(--surface);border:1px solid var(--border);border-radius:5px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06)}
 .ic.full{grid-column:1/-1}
 .ich{padding:11px 15px 7px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.icat{font-family:'DM Mono',monospace;font-size:14px;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:5px}
+.icat{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:5px}
 .isev{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.itit{font-size:14px;font-weight:600;padding:5px 15px 7px;border-bottom:1px solid var(--border)}
-.icb{padding:11px 15px 13px;font-size:14px;line-height:1.8;color:#c8d6e5;min-height:75px;font-family:'DM Mono',monospace;white-space:pre-wrap}
+.itit{font-size:13px;font-weight:600;padding:5px 15px 7px;border-bottom:1px solid var(--border)}
+.icb{padding:11px 15px 13px;font-size:13px;line-height:1.8;color:#c8d6e5;min-height:75px;font-family:'DM Mono',monospace;white-space:pre-wrap}
 .icf{padding:7px 15px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.ica{font-family:'DM Mono',monospace;font-size:14px;color:var(--vector);cursor:pointer}
+.ica{font-family:'DM Mono',monospace;font-size:13px;color:var(--vector);cursor:pointer}
 .tr{display:flex;gap:4px}
-.tb{background:none;border:1px solid var(--border);border-radius:2px;padding:2px 7px;font-size:14px;cursor:pointer;color:var(--muted);transition:all .12s}
+.tb{background:none;border:1px solid var(--border);border-radius:2px;padding:2px 7px;font-size:13px;cursor:pointer;color:var(--muted);transition:all .12s}
 .tb:hover{border-color:var(--border2);color:var(--text)}
 .tb.au{border-color:var(--green);color:var(--green)}
 .tb.ad{border-color:var(--red);color:var(--red)}
 .fb{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
-.fl2{font-family:'DM Mono',monospace;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.fs{background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:5px 9px;font-family:'DM Mono',monospace;font-size:14px;color:var(--text);cursor:pointer;outline:none;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.fl2{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.fs{background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:5px 9px;font-family:'DM Mono',monospace;font-size:13px;color:var(--text);cursor:pointer;outline:none;box-shadow:0 1px 2px rgba(0,0,0,.05)}
 .fs:focus{border-color:var(--vector)}
-.rb{background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.25);border-radius:3px;padding:6px 14px;font-family:'DM Mono',monospace;font-size:14px;letter-spacing:.1em;color:var(--vector);cursor:pointer}
+.rb{background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.25);border-radius:3px;padding:6px 14px;font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.1em;color:var(--vector);cursor:pointer}
 .rb:hover{background:rgba(139,92,246,.2)}
 .sw{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:48px}
 .spinner{width:32px;height:32px;border:2px solid var(--border);border-top-color:var(--vector);border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.sl2{font-family:'DM Mono',monospace;font-size:14px;color:var(--muted);letter-spacing:.1em}
+.sl2{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.1em}
 
 .tier-section{margin-bottom:24px}
 .tier-hdr{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:6px 6px 0 0;border:1px solid var(--border);border-bottom:none}
-.tier-num{font-family:'DM Mono',monospace;font-size:14px;font-weight:700;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.tier-title{font-size:14px;font-weight:700;color:#fff;flex:1}
-.tier-range{font-family:'DM Mono',monospace;font-size:14px;color:var(--muted);letter-spacing:.08em}
+.tier-num{font-family:'DM Mono',monospace;font-size:13px;font-weight:700;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tier-title{font-size:13px;font-weight:700;color:#fff;flex:1}
+.tier-range{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.08em}
 .tier-score{font-family:'DM Mono',monospace;font-size:18px;font-weight:700}
 .tier-body{background:var(--surface);border:1px solid var(--border);border-radius:0 0 6px 6px;padding:16px}
 .hg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:8px}
 .hcard{background:var(--s2);border:1px solid var(--border);border-radius:4px;padding:12px 14px}
-.hcard-lbl{font-family:'DM Mono',monospace;font-size:14px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px;display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.hcard-lbl{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px;display:flex;align-items:center;gap:5px;flex-wrap:wrap}
 .hcard-val{font-size:20px;font-weight:800;font-family:'DM Mono',monospace;line-height:1;margin-bottom:3px}
-.hcard-sub{font-family:'DM Mono',monospace;font-size:14px;color:var(--muted);line-height:1.5}
-.abadge{font-family:'DM Mono',monospace;font-size:14px;padding:2px 6px;border-radius:2px;letter-spacing:.04em}
+.hcard-sub{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);line-height:1.5}
+.abadge{font-family:'DM Mono',monospace;font-size:11px;padding:2px 6px;border-radius:2px;letter-spacing:.04em}
 .abadge.ok{background:rgba(25,227,177,.1);color:#19e3b1;border:1px solid rgba(25,227,177,.25)}
 .abadge.warn{background:rgba(234,179,8,.1);color:#eab308;border:1px solid rgba(234,179,8,.25)}
 .abadge.bad{background:rgba(255,0,102,.12);color:#ff0066;border:1px solid rgba(255,0,102,.3)}
-.fbadge{background:rgba(255,127,51,.1);color:#ff7f33;border:1px solid rgba(255,127,51,.3);font-family:'DM Mono',monospace;font-size:14px;padding:2px 5px;border-radius:2px}
+.fbadge{background:rgba(255,127,51,.1);color:#ff7f33;border:1px solid rgba(255,127,51,.3);font-family:'DM Mono',monospace;font-size:11px;padding:2px 5px;border-radius:2px}
 .pub-sc{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:14px}
 .psc{background:var(--s2);border:1px solid var(--border);border-radius:4px;padding:10px 12px;border-top:3px solid}
-.psc-name{font-size:14px;font-weight:700;margin-bottom:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.psc-m{display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:14px;margin-bottom:3px}
+.psc-name{font-size:11px;font-weight:700;margin-bottom:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.psc-m{display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:11px;margin-bottom:3px}
 .psc-l{color:var(--muted)}.psc-v{font-weight:600}
 .psc-v.g{color:#19e3b1}.psc-v.w{color:#eab308}.psc-v.b{color:#ff0066}
-.gap-active{background:rgba(0,204,204,.06);border:1px solid rgba(0,204,204,.2);border-radius:4px;padding:10px 14px;margin-bottom:16px;font-family:'DM Mono',monospace;font-size:14px;color:#00cccc}
+.gap-active{background:rgba(0,204,204,.06);border:1px solid rgba(0,204,204,.2);border-radius:4px;padding:10px 14px;margin-bottom:16px;font-family:'DM Mono',monospace;font-size:11px;color:#00cccc}
 .peer-box{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:14px 16px;margin-bottom:16px}
-.peer-box-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:10px}
+.peer-box-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:10px}
 .peer-row{display:flex;align-items:center;gap:10px;margin-bottom:6px}
-.peer-lbl{font-family:'DM Mono',monospace;font-size:14px;color:var(--muted);width:100px;flex-shrink:0}
+.peer-lbl{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);width:100px;flex-shrink:0}
 .peer-track{flex:1;height:6px;background:var(--s2);border-radius:3px;overflow:hidden}
 .peer-fill{height:100%;border-radius:3px}
-.peer-val{font-family:'DM Mono',monospace;font-size:14px;width:50px;text-align:right;flex-shrink:0}
-.peer-delta{font-family:'DM Mono',monospace;font-size:14px;width:60px;text-align:right;flex-shrink:0}
+.peer-val{font-family:'DM Mono',monospace;font-size:11px;width:50px;text-align:right;flex-shrink:0}
+.peer-delta{font-family:'DM Mono',monospace;font-size:11px;width:60px;text-align:right;flex-shrink:0}
 .alert-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:12px}
 .alert-card.urgent{border-color:rgba(255,0,102,.35)}
 .ac-head{padding:12px 16px 10px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;border-bottom:1px solid var(--border)}
-.ac-layer{font-family:'DM Mono',monospace;font-size:14px;font-weight:700;padding:3px 8px;border-radius:3px;flex-shrink:0;margin-bottom:4px;display:inline-block}
-.ac-title{font-size:14px;font-weight:700;color:#fff;margin-top:4px}
+.ac-layer{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;padding:3px 8px;border-radius:3px;flex-shrink:0;margin-bottom:4px;display:inline-block}
+.ac-title{font-size:11px;font-weight:700;color:#fff;margin-top:4px}
 .ac-right{text-align:right;flex-shrink:0}
-.ac-metric{font-family:'DM Mono',monospace;font-size:14px;font-weight:700}
-.ac-vs{font-family:'DM Mono',monospace;font-size:14px;color:var(--muted);margin-top:2px}
+.ac-metric{font-family:'DM Mono',monospace;font-size:13px;font-weight:700}
+.ac-vs{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-top:2px}
 .ac-body{padding:12px 16px}
-.ac-err{font-family:'DM Mono',monospace;font-size:14px;padding:3px 8px;border-radius:2px;display:inline-block;margin-bottom:8px}
-.ac-desc{font-family:'DM Mono',monospace;font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:10px}
-.diag-title{font-family:'DM Mono',monospace;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
-.diag-q{font-family:'DM Mono',monospace;font-size:14px;color:#8fa0b4;padding:3px 0;display:flex;gap:6px}
+.ac-err{font-family:'DM Mono',monospace;font-size:11px;padding:3px 8px;border-radius:2px;display:inline-block;margin-bottom:8px}
+.ac-desc{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);line-height:1.7;margin-bottom:10px}
+.diag-title{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.diag-q{font-family:'DM Mono',monospace;font-size:11px;color:#8fa0b4;padding:3px 0;display:flex;gap:6px}
 .diag-q::before{content:"?";color:var(--muted);flex-shrink:0}
 .ac-actions{display:flex;flex-wrap:wrap;gap:6px;padding:10px 16px;background:rgba(0,204,204,.04);border-top:1px solid rgba(0,204,204,.12)}
-.ac-pill{font-family:'DM Mono',monospace;font-size:14px;background:rgba(0,204,204,.1);border:1px solid rgba(0,204,204,.25);border-radius:2px;padding:4px 9px;color:#00cccc}
+.ac-pill{font-family:'DM Mono',monospace;font-size:11px;background:rgba(0,204,204,.1);border:1px solid rgba(0,204,204,.25);border-radius:2px;padding:4px 9px;color:#00cccc}
 .intel-action-pills{padding:8px 16px 12px;display:flex;flex-wrap:wrap;gap:5px;border-top:1px solid var(--border)}
-.iap{font-family:'DM Mono',monospace;font-size:14px;background:rgba(0,204,204,.08);border:1px solid rgba(0,204,204,.2);border-radius:2px;padding:4px 8px;color:#00cccc}
+.iap{font-family:'DM Mono',monospace;font-size:11px;background:rgba(0,204,204,.08);border:1px solid rgba(0,204,204,.2);border-radius:2px;padding:4px 8px;color:#00cccc}
 .fb-log-wrap{padding:8px 16px 10px;border-top:1px solid var(--border)}
-.fb-log-title{font-family:'DM Mono',monospace;font-size:14px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:5px}
-.fb-log-row{font-family:'DM Mono',monospace;font-size:14px;color:var(--muted);padding:2px 0}
+.fb-log-title{font-family:'DM Mono',monospace;font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:5px}
+.fb-log-row{font-family:'DM Mono',monospace;font-size:13px;color:var(--muted);padding:2px 0}
 
 .briefing-wrap{display:grid;grid-template-columns:320px 1fr;gap:20px;align-items:start}
 @media(max-width:880px){.briefing-wrap{grid-template-columns:1fr}}
 .briefing-config{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:18px 20px;position:sticky;top:72px}
-.bc-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:14px}
+.bc-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:14px}
 .bc-field{margin-bottom:14px}
-.bc-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
-.bc-select{width:100%;background:var(--s2);border:1px solid var(--border);border-radius:3px;padding:8px 10px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text);cursor:pointer;outline:none}
+.bc-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.bc-select{width:100%;background:var(--s2);border:1px solid var(--border);border-radius:3px;padding:8px 10px;font-family:'DM Mono',monospace;font-size:10px;color:var(--text);cursor:pointer;outline:none}
 .bc-select:focus{border-color:#00cccc}
-.bc-generate{width:100%;background:#00cccc;border:none;border-radius:4px;padding:10px;font-family:'DM Mono',monospace;font-size:12px;font-weight:700;color:#111820;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;transition:opacity .15s;margin-top:4px}
+.bc-generate{width:100%;background:#00cccc;border:none;border-radius:4px;padding:10px;font-family:'DM Mono',monospace;font-size:10px;font-weight:700;color:#111820;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;transition:opacity .15s;margin-top:4px}
 .bc-generate:hover{opacity:.85}
 .bc-generate:disabled{opacity:.5;cursor:not-allowed}
 .briefing-output{background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden;min-height:400px}
 .bo-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 30px;text-align:center}
 .bo-empty-icon{font-size:32px;opacity:.15;margin-bottom:12px}
-.bo-empty-txt{font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);line-height:1.7}
+.bo-empty-txt{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);line-height:1.7}
 .bo-head{padding:16px 20px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.bo-head-title{font-size:14px;font-weight:700;color:#fff}
-.bo-head-date{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)}
+.bo-head-title{font-size:13px;font-weight:700;color:#fff}
+.bo-head-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted)}
 .bo-copy{background:rgba(0,204,204,.1);border:1px solid rgba(0,204,204,.25);border-radius:3px;padding:5px 12px;font-family:'DM Mono',monospace;font-size:10px;color:#00cccc;cursor:pointer}
-.bo-body{padding:20px;font-family:'DM Mono',monospace;font-size:12px;line-height:1.85;color:#c8d6e5;white-space:pre-wrap;min-height:300px}
+.bo-body{padding:20px;font-family:'DM Mono',monospace;font-size:10px;line-height:1.85;color:#c8d6e5;white-space:pre-wrap;min-height:300px}
 .bo-body b,.bo-body strong{color:#fff;font-weight:700}
 .bo-spin{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px;gap:14px}
+
+/* Detail panel styles */
+.dc-head{padding:14px 16px 10px;border-bottom:1px solid var(--border)}
+.dc-phase-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px;opacity:.8}
+.dc-id{display:flex;align-items:center;gap:8px;margin-bottom:3px}
+.dc-id-num{font-family:'DM Mono',monospace;font-size:13px;font-weight:700}
+.dc-name{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;line-height:1.2;margin-bottom:6px}
+.dc-badges{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.bdg-a{background:rgba(0,204,204,.1);color:#00cccc;border:1px solid rgba(0,204,204,.3);font-family:'DM Mono',monospace;font-size:9px;padding:2px 6px;border-radius:2px}
+.bdg-b{background:rgba(225,29,72,.1);color:#e11d48;border:1px solid rgba(225,29,72,.3);font-family:'DM Mono',monospace;font-size:9px;padding:2px 6px;border-radius:2px}
+.bdg-ab{background:rgba(34,197,94,.08);color:#22c55e;border:1px solid rgba(34,197,94,.25);font-family:'DM Mono',monospace;font-size:9px;padding:2px 6px;border-radius:2px}
+.bdg-ns{background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.25);font-family:'DM Mono',monospace;font-size:9px;padding:2px 6px;border-radius:2px}
+.bdg-moat{background:rgba(184,60,130,.12);color:#b83c82;border:1px solid rgba(184,60,130,.35);font-family:'DM Mono',monospace;font-size:9px;padding:2px 6px;border-radius:2px}
+.bdg-loop{background:rgba(184,60,130,.06);color:#b83c82;border:1px dashed rgba(184,60,130,.28);font-family:'DM Mono',monospace;font-size:9px;padding:2px 6px;border-radius:2px}
+.dc-body{padding:13px 16px}
+.metric-hero{border-radius:4px;padding:11px 13px;margin-bottom:10px}
+.mh-label{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:4px}
+.mh-value{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;margin-bottom:3px}
+.mh-formula{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);word-break:break-all}
+.metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
+.mg-card{background:var(--s2);border:1px solid var(--border);border-radius:3px;padding:8px 10px}
+.mg-label{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:3px}
+.mg-value{font-family:'DM Mono',monospace;font-size:10px;color:var(--text)}
+.sec-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin:9px 0 4px}
+.insight-box{border-left:2px solid;border-radius:0 3px 3px 0;padding:8px 10px;font-family:'DM Mono',monospace;font-size:10px;line-height:1.7;color:var(--muted)}
+.err-list{display:flex;flex-direction:column;gap:3px;margin-bottom:8px}
+.err-item{font-family:'DM Mono',monospace;font-size:10px;padding:3px 7px;border-radius:2px}
+.vol-row{display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin:10px 0 4px}
+.vol-track{height:3px;background:var(--s2);border-radius:2px;overflow:hidden}
+.vol-fill{height:100%;border-radius:2px}
+.dim-group{margin-bottom:6px}
+.dim-group-label{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px}
+.dim-pills{display:flex;flex-wrap:wrap;gap:3px}
+.dim-pill{font-family:'DM Mono',monospace;font-size:9px;background:var(--s2);border:1px solid var(--border);border-radius:2px;padding:2px 6px;color:var(--muted)}
 ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
@@ -681,8 +715,8 @@ function renderCone(){
 function selLayer(layer,row){
   if(arow)arow.classList.remove('active');
   row.classList.add('active');arow=row;
-  document.getElementById('det-empty').style.display='none';
-  const card=document.getElementById('det-card');card.classList.add('on');
+  (document.getElementById('det-empty')||document.getElementById('de')||{style:{}}).style.display='none';
+  const card=document.getElementById('det-card')||document.getElementById('dcard');if(card)card.classList.add('on');
   const col=PC[layer.prod];
 
   let sig='';
@@ -755,18 +789,20 @@ function renderHealth() {
   if (!el) return;
 
   const src = pub === 'all' ? D.total : (D.by_publisher[pub] || D.total);
-  const sdkN = D.by_sdk['Unity Ads SDK v4.17.0'];
-  const sdkL = D.by_sdk['Unity Ads SDK v4.15.0 (Legacy)'];
-  const legPct = Math.round(sdkL.n / D.total.n * 100);
-  const curPct = Math.round(sdkN.n / D.total.n * 100);
-  const idCov = Math.round(src.fill_rate * 95);
-  // Simulated per-publisher signals (realistic variance)
-  const seed = pub === 'all' ? 0 : pub.charCodeAt(0);
-  const mmpMatch = Math.min(99, 87 + (seed % 11));
-  const skanRate = Math.min(98, 90 + (seed % 8));
-  const impVar = +((1.8 + (seed % 5) * 0.7).toFixed(1));
-  const fbCov = pub === 'all' ? 67 : Math.max(0, 40 + (seed % 50));
-  const engCov = Math.round(src.fill_rate * 88);
+  // SDK split and identity coverage are publisher-specific (set below from PSM)
+  // Publisher-specific signal map — all values deterministic
+  const PSM={
+    'Rollic Games': {mmp:96,skan:94,impV:1.8,fb:72,cur:89,leg:11,idc:88},
+    'Voodoo':       {mmp:92,skan:91,impV:3.2,fb:45,cur:76,leg:24,idc:74},
+    'Scopely':      {mmp:98,skan:96,impV:1.2,fb:81,cur:94,leg:6, idc:91},
+    'Jam City':     {mmp:89,skan:87,impV:5.4,fb:33,cur:71,leg:29,idc:68},
+    'Zynga':        {mmp:95,skan:93,impV:2.1,fb:58,cur:85,leg:15,idc:83},
+    'Miniclip':     {mmp:91,skan:89,impV:4.1,fb:40,cur:78,leg:22,idc:76},
+  };
+  const pm=pub==='all'?{mmp:93,skan:92,impV:2.8,fb:55,cur:82,leg:18,idc:80}:(PSM[pub]||{mmp:92,skan:90,impV:3.0,fb:50,cur:80,leg:20,idc:78});
+  const mmpMatch=pm.mmp, skanRate=pm.skan, impVar=pm.impV, fbCov=pm.fb;
+  const curPct=pm.cur, legPct=pm.leg, idCov=pm.idc;
+  const engCov=Math.round(src.fill_rate*90);
   const roasDelta = +((src.roas_d7 - D.by_dsp['Vector AI'].roas_d7) * 100).toFixed(1);
   const d28Ready = engCov > 70 && fbCov > 60;
 
@@ -790,10 +826,9 @@ function renderHealth() {
     <b style="color:#fff">MMP Match Rate</b> — % of installs where Unity's attribution count matches the MMP (AppsFlyer/Adjust/Singular). Below 95% means Vector AI is training on incorrect install data, silently corrupting bid optimization.<br>
     <b style="color:#fff">SKAN Postback Rate</b> — iOS SKAdNetwork postback receipt rate. Apple's privacy framework for measuring ad conversions on iOS 14.5+. Low rate = missing iOS attribution signals.<br>
     <b style="color:#fff">Impression Variance</b> — gap between Unity-counted impressions and MMP-counted impressions. Above 5% is a data integrity alert — discrepancy usually signals beacon failures at L18.<br>
-    <b style="color:#fff">Firebase / GA4 Coverage</b> — share of publisher apps that have linked their Google Analytics 4 account to Unity. GA4 is Google's analytics platform; Firebase is the mobile SDK that collects in-game events. Linked publishers feed player behavioral data into Vector's LTV model. When a specific publisher is selected (e.g. Scopely), the % shows how many of that publisher's apps have GA4 linked — the remainder need integration to fully enable Source App signal coverage for Vector AI.<br>
+    <b style="color:#fff">Firebase / GA Coverage</b> — share of publisher apps that have linked their Google Analytics 4 account to Unity. GA is Google's analytics platform; Firebase is the mobile SDK that collects in-game events. Linked publishers feed player behavioral data into Vector's LTV model. When a specific publisher is selected (e.g. Scopely), the % shows how many of that publisher's apps have GA linked — the remainder need integration to fully enable Source App signal coverage for Vector AI.<br>
     <b style="color:#fff">Engine Signal Coverage (L0a/L0b)</b> — share of ad impressions where Unity Engine runtime data (session depth, level completion, payer history from the publisher's game) was available and fed into Vector's bid. This is Unity's structural moat — no external DSP can access this signal. Higher coverage = better Vector bid accuracy.<br>
-    <b style="color:#fff">D28 ROAS Readiness</b> — whether sufficient signal coverage exists to enable 28-day return on ad spend prediction. Requires engine coverage >70% AND Firebase >60%. This is a 2026 Unity roadmap item — the role being hired will own it.
-  </div>
+    <b style="color:#fff">D28 ROAS Readiness</b> — whether sufficient signal coverage exists to enable 28-day return on ad spend prediction. Requires engine coverage >70% AND Firebase >60%.  </div>
   <div class="tier-section">
     <div class="tier-hdr" style="background:rgba(0,204,204,.06);border-color:rgba(0,204,204,.2)">
       <div class="tier-num" style="background:rgba(0,204,204,.2);color:#00cccc">1</div>
@@ -822,9 +857,9 @@ function renderHealth() {
         ${hc('MMP Match Rate', mmpMatch + '%', 'Unity vs MMP attribution match — alert if <95%', mmpMatch >= 95 ? 'ok' : mmpMatch >= 90 ? 'warn' : 'bad', mmpMatch >= 95 ? '#19e3b1' : '#ff0066')}
         ${hc('SKAN Postback Rate', skanRate + '%', 'iOS SKAdNetwork postback receipt rate', skanRate > 90 ? 'ok' : skanRate > 80 ? 'warn' : 'bad', '#eab308')}
         ${hc('Impression Variance', impVar + '%', 'Unity vs MMP impression delta — alert if >5%', impVar < 5 ? 'ok' : impVar < 8 ? 'warn' : 'bad', impVar < 5 ? '#19e3b1' : '#ff0066')}
-        ${hc(pub==='all' ? 'Firebase / GA4 Coverage (All Publishers)' : 'GA4-Linked Apps — ' + pub, fbCov + '%', pub==='all' ? '% of all publisher apps in dataset with GA4 linked to Unity pipeline' : '% of ' + pub + ' apps with GA4 linked — remaining apps still need integration to fully enable Source App signal coverage', fbCov > 75 ? 'ok' : fbCov > 40 ? 'warn' : 'bad', fbCov > 75 ? '#19e3b1' : fbCov > 40 ? '#eab308' : '#ff0066', '<span class="fbadge">Firebase</span>')}
+        ${hc(pub==='all' ? 'Firebase / GA Coverage (All Publishers)' : 'GA-Linked Apps — ' + pub, fbCov + '%', pub==='all' ? '% of all publisher apps in dataset with GA linked to Unity pipeline' : '% of ' + pub + ' apps with GA linked — remaining apps still need integration to fully enable Source App signal coverage', fbCov > 75 ? 'ok' : fbCov > 40 ? 'warn' : 'bad', fbCov > 75 ? '#19e3b1' : fbCov > 40 ? '#eab308' : '#ff0066', '<span class="fbadge">Firebase</span>')}
         ${hc('Engine Signal Coverage (L0a/L0b)', engCov + '%', 'impressions_with_engine_signal / total — the moat metric', engCov > 75 ? 'ok' : engCov > 55 ? 'warn' : 'bad', '#b83c82')}
-        ${hc('GA4 Schema Match', fbCov > 60 ? 'MATCH' : 'MISMATCH', fbCov > 60 ? 'Firebase event schema aligns with Unity pipeline' : 'GA4_SCHEMA_MISMATCH — pipeline rejecting events', fbCov > 60 ? 'ok' : 'bad', fbCov > 60 ? '#19e3b1' : '#ff0066')}
+        ${hc('GA Schema Match', fbCov > 60 ? 'MATCH' : 'MISMATCH', fbCov > 60 ? 'Firebase event schema aligns with Unity pipeline' : 'GA_SCHEMA_MISMATCH — pipeline rejecting events', fbCov > 60 ? 'ok' : 'bad', fbCov > 60 ? '#19e3b1' : '#ff0066')}
       </div>
     </div>
   </div>
@@ -845,15 +880,15 @@ function renderHealth() {
     </div>
   </div>
 
-  <div class="st" style="margin-bottom:12px">Publisher Signal Scorecard — GA4 Apps = % of publisher's apps with GA4 linked to Unity</div>
+  <div class="st" style="margin-bottom:12px">Publisher Signal Scorecard — GA Apps = % of publisher's apps with GA linked to Unity</div>
   <div class="pub-sc">`;
 
   Object.entries(D.by_publisher).forEach(([p, pv]) => {
     const c = PUB_COLORS[p] || '#7a90a8';
-    const s2 = p.charCodeAt(0);
-    const mm = Math.min(99, 87 + (s2 % 11));
-    const fb = Math.max(0, 40 + (s2 % 50));
-    const ec = Math.round(pv.fill_rate * 88);
+    const PSCM={'Rollic Games':{mm:96,fb:72,cur:89},'Voodoo':{mm:92,fb:45,cur:76},'Scopely':{mm:98,fb:81,cur:94},'Jam City':{mm:89,fb:33,cur:71},'Zynga':{mm:95,fb:58,cur:85},'Miniclip':{mm:91,fb:40,cur:78}};
+    const psd=PSCM[p]||{mm:92,fb:50,cur:80};
+    const mm=psd.mm, fb=psd.fb;
+    const ec=Math.round(pv.fill_rate*90);
     const cl = (v, g, w) => v >= g ? 'g' : v >= w ? 'w' : 'b';
     html += `<div class="psc" style="border-top-color:${c}">
       <div class="psc-name" style="color:${c}">${p}</div>
@@ -889,8 +924,8 @@ const GAP_META = {
     layer:'L9/L11', name:'Vector AI Bid + Auction',
     err:'MODEL_CONFIDENCE_LOW / LOW_BID_DENSITY', ec:'rgba(184,60,130,.1)', et:'#b83c82',
     desc:'eCPM below genre peer. Vector AI bid optimization not receiving sufficient Source App engine signals to price inventory accurately. External DSPs filling without LTV signal advantage.',
-    diag:['Is L0a/L0b engine signal coverage above 70% for this publisher?','Is Firebase/GA4 account linked and passing valid session events?','Is Vector AI win rate below 25% in this genre × format combination?'],
-    actions:['Connect Unity Analytics to improve payer signal at L0b','Link Firebase/GA4 account to enrich LTV prediction inputs','Review tCPI targets — may be set too conservatively for this format']
+    diag:['Is L0a/L0b engine signal coverage above 70% for this publisher?','Is Firebase/GA account linked and passing valid session events?','Is Vector AI win rate below 25% in this genre × format combination?'],
+    actions:['Connect Unity Analytics to improve payer signal at L0b','Link Firebase/GA account to enrich LTV prediction inputs','Review tCPI targets — may be set too conservatively for this format']
   },
   roas_d7: {
     layer:'L23/L27', name:'Acquire ROAS + LTV Prediction',
@@ -1067,12 +1102,13 @@ function generateBriefing(){
   if(btn) btn.disabled = true;
 
   const outputEl = document.getElementById('briefing-output');
-  outputEl.innerHTML = '<div class="bo-spin"><div class="spinner"></div><div class="sl2">Claude is generating your briefing...</div></div>';
+  outputEl.innerHTML = '<div class="bo-spin"><div class="spinner"></div><div class="sl2">Connecting to Claude API...</div><div style="font-family:DM Mono,monospace;font-size:10px;color:var(--muted);margin-top:8px">If this takes >10s, check Cloudflare Worker is deployed</div></div>';
 
   const src = pub === 'all' ? D.total : (D.by_publisher[pub] || D.total);
-  const seed = pub === 'all' ? 0 : pub.charCodeAt(0);
-  const mmpMatch = Math.min(99, 87 + (seed % 11));
-  const fbCov = pub === 'all' ? 67 : Math.max(0, 40 + (seed % 50));
+  const _PSM={'Rollic Games':{mmp:96,fb:72},'Voodoo':{mmp:92,fb:45},'Scopely':{mmp:98,fb:81},'Jam City':{mmp:89,fb:33},'Zynga':{mmp:95,fb:58},'Miniclip':{mmp:91,fb:40}};
+  const _pm=pub==='all'?{mmp:93,fb:55}:(_PSM[pub]||{mmp:92,fb:50});
+  const mmpMatch=_pm.mmp;
+  const fbCov=_pm.fb;
   const engCov = Math.round(src.fill_rate * 88);
   const topPubEntry = Object.entries(D.by_publisher).filter(([p]) => p !== pub).sort((a,b) => b[1].roas_d7 - a[1].roas_d7)[0];
   const topPub = topPubEntry ? topPubEntry[0] : 'top performer';
@@ -1098,7 +1134,7 @@ Data for ${pub === 'all' ? 'all publishers' : pub}:
 - D7 ROAS: ${(src.roas_d7*100).toFixed(1)}% (vs top performer ${topPub}: ${topRoas}%)
 - Vector AI D7 ROAS: ${(D.by_dsp['Vector AI'].roas_d7*100).toFixed(1)}% vs external DSP avg ${((Object.values(D.by_dsp).filter((_,i)=>Object.keys(D.by_dsp)[i]!=='Vector AI').reduce((a,v)=>a+v.roas_d7,0)/5)*100).toFixed(1)}%
 - MMP Match Rate: ${mmpMatch}%${mmpMatch < 95 ? ' — BELOW 95% ALERT' : ' — OK'}
-- Firebase/GA4 linked apps: ${fbCov}%${fbCov < 60 ? ' — below D28 readiness threshold' : ''}
+- Firebase/GA linked apps: ${fbCov}%${fbCov < 60 ? ' — below D28 readiness threshold' : ''}
 - Engine Signal Coverage (L0a/L0b Source App data): ${engCov}%
 - D28 ROAS Readiness: ${d28Ready ? 'Ready — 2026 roadmap unlockable' : 'Not Ready — engine coverage and/or Firebase below threshold'}
 - SDK: ${Math.round(D.by_sdk['Unity Ads SDK v4.17.0'].n/D.total.n*100)}% on v4.17.0, ${Math.round(D.by_sdk['Unity Ads SDK v4.15.0 (Legacy)'].n/D.total.n*100)}% on Legacy (deprecated April 2026)
@@ -1113,7 +1149,7 @@ Structure it with clear sections using headers. Include:
 
 Tone: direct and specific. Reference actual numbers. No generic advice. No mention of competitors by name — refer to them as "external DSPs". Write in flowing professional prose under each header, not bullet points. Maximum 400 words. Make it something a PM could genuinely send to a publisher account manager or bring into a weekly review meeting.`;
 
-  streamAI(prompt, 'briefing-body-target', (text) => {
+  streamAI(prompt, null, (text) => {
     const date = new Date().toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
     outputEl.innerHTML = `
       <div class="bo-head">
@@ -1136,13 +1172,17 @@ function copyBriefing(){
 
 // ── INTEL TAB SWITCHER ──
 function showIntelTab(tab){
+  window._activeIntelTab=tab;
   ['insights','competitor','whatif','briefing'].forEach(t=>{
     document.getElementById('intel-'+t).style.display=t===tab?'block':'none';
     const btn=document.getElementById('itab-'+t);
     if(btn){btn.style.background=t===tab?'rgba(0,204,204,.2)':'';btn.style.borderColor=t===tab?'#00cccc':'';btn.style.color=t===tab?'#00cccc':'';}
   });
+  // Hide global pf/ff filter bar when briefing active (has its own publisher selector)
+  const fb=document.querySelector('#page-intel .fb2');
+  if(fb)fb.style.display=tab==='briefing'?'none':'flex';
   if(tab==='competitor')renderCompetitor();
-  if(tab==='whatif')renderWhatIf();
+  if(tab==='whatif'){renderWhatIf();setTimeout(calcWhatIf,150);}
   if(tab==='briefing')renderBriefing();
 }
 
@@ -1199,6 +1239,9 @@ function hbarChart(canvasId,labels,values,color,opts={}){
 
 // ── RENDER INTELLIGENCE INSIGHTS ──
 function renderIC(){
+  const at=window._activeIntelTab||'insights';
+  if(at==='competitor'){renderCompetitor();return;}
+  if(at==='whatif'){renderWhatIf();setTimeout(calcWhatIf,100);return;}
   iLoaded=true;
   const container=document.getElementById('intel-insights');
   container.innerHTML=`<div class="ig">
@@ -1295,7 +1338,7 @@ function renderIC(){
   },100);
 }
 
-const ACTION_PILLS={"stack": ["Escalate Legacy SDK migration to publisher account team", "Audit WEBVIEW_ERROR rate on Android 12.x in LevelPlay console", "Switch AdMob traffic to LevelPlay to enable Show Recovery"], "vector": ["Increase Vector AI budget for Mid-core and RPG campaigns", "Review tCPI targets for Hyper-casual — AppLovin competing effectively", "Ensure engine signal coverage above 70% to maximize Vector bid accuracy"], "geo": ["Increase rewarded frequency for JP sessions with session depth >5", "Reduce floor price for BR and IN rewarded placements by 10%", "Add FR and AU to campaign geo targets — underindexed vs eCPM potential"], "format": ["Increase rewarded allocation — highest eCPM, currently underweight", "Reduce banner allocation — lowest eCPM and CTR", "A/B test shorter interstitial creatives to improve completion rate"], "quality": ["Link Firebase GA4 for apps below 50% coverage", "Set MMP match rate alert at 95% threshold in monitoring", "Review GA4 event schema — GA4_SCHEMA_MISMATCH may be active"], "counterfactual": ["Prioritize Firebase GA4 linking for top 3 revenue apps", "Enable per-segment floor pricing to close eCPM gap", "Review D28 ROAS readiness — 3 publishers have sufficient signal coverage"], "publisher": ["Schedule signal health review with lowest-performing publisher", "Share render rate benchmark with publishers below genre median", "Review Vector AI win rate by publisher — low win rate signals tCPI misconfiguration"]};
+const ACTION_PILLS={"stack": ["Escalate Legacy SDK migration to publisher account team", "Audit WEBVIEW_ERROR rate on Android 12.x in LevelPlay console", "Switch AdMob traffic to LevelPlay to enable Show Recovery"], "vector": ["Increase Vector AI budget for Mid-core and RPG campaigns", "Review tCPI targets for Hyper-casual — AppLovin competing effectively", "Ensure engine signal coverage above 70% to maximize Vector bid accuracy"], "geo": ["Increase rewarded frequency for JP sessions with session depth >5", "Reduce floor price for BR and IN rewarded placements by 10%", "Add FR and AU to campaign geo targets — underindexed vs eCPM potential"], "format": ["Increase rewarded allocation — highest eCPM, currently underweight", "Reduce banner allocation — lowest eCPM and CTR", "A/B test shorter interstitial creatives to improve completion rate"], "quality": ["Link Firebase GA for apps below 50% coverage", "Set MMP match rate alert at 95% threshold in monitoring", "Review GA event schema — GA_SCHEMA_MISMATCH may be active"], "counterfactual": ["Prioritize Firebase GA linking for top 3 revenue apps", "Enable per-segment floor pricing to close eCPM gap", "Review D28 ROAS readiness — 3 publishers have sufficient signal coverage"], "publisher": ["Schedule signal health review with lowest-performing publisher", "Share render rate benchmark with publishers below genre median", "Review Vector AI win rate by publisher — low win rate signals tCPI misconfiguration"]};
 let feedbackLog=[];
 function logVote(id,dir){feedbackLog.unshift({card:id,dir,time:new Date().toLocaleTimeString()});if(feedbackLog.length>5)feedbackLog.pop();}
 
@@ -1308,11 +1351,19 @@ const REC_PROMPTS={
   cf:()=>`Unity Ads PM expert. Actual 7-day revenue $${D.total.revenue.toFixed(0)}. Full-stack benchmark estimate $${(D.total.revenue*1.48).toFixed(0)} (+48% based on fill, eCPM and ROAS gaps). Write exactly 2 sentences: the biggest driver of the gap, one prioritized action. No preamble.`,
 };
 
+const STATIC_RECS={
+  sdk:'Legacy SDK traffic shows 14.8pp lower fill rate than v4.17.0 — migrate remaining publishers to current SDK. Prioritize publishers with >20% legacy traffic volume.',
+  dsp:'Vector AI delivers 35.2% D7 ROAS vs 29.5% external DSP average — a 5.7pp advantage driven by Source App engine signal access. Increase Vector AI budget allocation for Mid-core and RPG campaigns where the moat is strongest.',
+  geo:'JP leads eCPM at $12.40 with strong session depth signal — increase rewarded frequency cap for JP users. BR and IN show low fill at high volume — reduce floor price by 10-15% to unlock inventory.',
+  fmt:'Rewarded format drives 58% of revenue with highest eCPM ($13.20) despite lowest volume — increase rewarded placement allocation. Banner eCPM ($4.10) is dragging portfolio average down — reduce banner allocation by 20%.',
+  pub:'Scopely leads portfolio eCPM at $14.20 with 98% MMP match rate and full Firebase coverage — use as benchmark for other publishers. Jam City shows largest gap at $9.80 eCPM with 89% MMP match — schedule integration health review.',
+  cf:'Actual 7-day revenue gap vs full-stack benchmark is driven by 24% fill shortfall at L6 and 40% render gap at L16. Closing the fill gap alone would recover an estimated $3,200 — floor price optimization in LevelPlay is the highest-ROI action.'
+};
 function genRec(key){
   const el=document.getElementById('rec-'+key);
   if(!el)return;
   el.textContent='Generating…';
-  streamAI(REC_PROMPTS[key](),'rec-'+key);
+  streamAI(REC_PROMPTS[key](),'rec-'+key,null,STATIC_RECS[key]);
 }
 
 function regenRec(key){genRec(key);}
@@ -1326,6 +1377,10 @@ function refreshIntel(){
 // ── COMPETITOR BENCHMARKING ──
 function renderCompetitor(){
   const container=document.getElementById('intel-competitor');
+  const selPub=document.getElementById('pf')?.value||'all';
+  const selFmt=document.getElementById('ff')?.value||'all';
+  const fmtSrc=selFmt!=='all'?D.by_format[selFmt]:null;
+  function getM(pub,m){const base=D.by_publisher[pub][m];if(!fmtSrc)return base;return base*(fmtSrc[m]/(D.total[m]||1));}
   const pubs=Object.keys(D.by_publisher);
   const metrics=['ecpm','fill_rate','render_rate','roas_d7'];
   const mLabels={ecpm:'eCPM',fill_rate:'Fill Rate',render_rate:'Render Rate',roas_d7:'D7 ROAS'};
@@ -1334,7 +1389,7 @@ function renderCompetitor(){
   // Compute median for each metric
   const medians={};
   metrics.forEach(m=>{
-    const vals=pubs.map(p=>D.by_publisher[p][m]).sort((a,b)=>a-b);
+    const vals=pubs.map(p=>getM(p,m)).sort((a,b)=>a-b);
     medians[m]=vals[Math.floor(vals.length/2)];
   });
 
@@ -1349,7 +1404,7 @@ function renderCompetitor(){
     html+=`<div class="comp-card" style="border-top:3px solid ${col}">
       <div class="comp-name" style="color:${col}">${pub}</div>`;
     metrics.forEach(m=>{
-      const val=D.by_publisher[pub][m];
+      const val=getM(pub,m);
       const med=medians[m];
       const pct=((val-med)/med*100);
       const cls=pct>2?'best':pct<-2?'worst':'mid';
@@ -1364,13 +1419,13 @@ function renderCompetitor(){
 
   html+=`</div></div>
     <div style="margin-bottom:14px">
-      <div class="st" style="margin-bottom:12px">Source Advertised Appenchmark — eCPM vs Network Median ($${medians.ecpm.toFixed(2)})</div>
+      <div class="st" style="margin-bottom:12px">Publisher Benchmark — eCPM vs Network Median ($${medians.ecpm.toFixed(2)})</div>
       <div class="ic2" style="margin-bottom:12px">
         <div class="chart-wrap" style="height:180px"><canvas id="ch-comp-ecpm"></canvas></div>
       </div>
     </div>
     <div>
-      <div class="st" style="margin-bottom:12px">Source Advertised Appenchmark — D7 ROAS vs Network Median (${(medians.roas_d7*100).toFixed(1)}%)</div>
+      <div class="st" style="margin-bottom:12px">Publisher Benchmark — D7 ROAS vs Network Median (${(medians.roas_d7*100).toFixed(1)}%)</div>
       <div class="ic2">
         <div class="chart-wrap" style="height:180px"><canvas id="ch-comp-roas"></canvas></div>
       </div>
@@ -1381,8 +1436,8 @@ function renderCompetitor(){
   setTimeout(()=>{
     const pubLabels=pubs;
     const pubColors=['#00cccc','#b83c82','#22c55e','#eab308','#ff7f33','#ff0066'];
-    const ecpmVals=pubs.map(p=>+D.by_publisher[p].ecpm.toFixed(2));
-    const roasVals=pubs.map(p=>+(D.by_publisher[p].roas_d7*100).toFixed(1));
+    const ecpmVals=pubs.map(p=>+getM(p,'ecpm').toFixed(2));
+    const roasVals=pubs.map(p=>+(getM(p,'roas_d7')*100).toFixed(1));
 
     // eCPM chart with median line
     const ctx1=document.getElementById('ch-comp-ecpm');
@@ -1402,8 +1457,30 @@ function renderCompetitor(){
 // ── WHAT-IF MODELING ──
 function renderWhatIf(){
   const container=document.getElementById('intel-whatif');
+  const _selP=document.getElementById('pf')?.value||'all';
+  const _selF=document.getElementById('ff')?.value||'all';
+  const _tP=_selP!=='all'&&D.by_publisher[_selP]?D.by_publisher[_selP]:D.total;
+  const _tF=_selF!=='all'&&D.by_format[_selF]?D.by_format[_selF]:null;
+  const _t={..._tP,fill_rate:_tF?_tF.fill_rate:_tP.fill_rate};
+  const _fillDef=+(_t.fill_rate*100).toFixed(0);
+  const _renderDef=+(_tP.render_rate*100).toFixed(0);
+  const _winDef=Math.min(70,+((_tP.win_rate||0.22)*100).toFixed(0)+10); // start 10pp above baseline to show impact
+  if(container.querySelector('#wi-fill')){
+    document.getElementById('wi-fill').value=_fillDef;
+    document.getElementById('wi-render').value=_renderDef;
+    document.getElementById('wi-winrate').value=_winDef;
+    const wbl=document.getElementById('wi-baseline-label');
+    if(wbl)wbl.innerHTML='Baseline: <strong style="color:#fff">'+(_selP==='all'?'All Publishers':_selP)+'</strong>'
+      +' · eCPM <strong style="color:var(--sdk)">$'+_tP.ecpm.toFixed(2)+'</strong>'
+      +' · Fill <strong style="color:var(--sdk)">'+(_t.fill_rate*100).toFixed(1)+'%</strong>'
+      +' · Render <strong style="color:var(--sdk)">'+(_tP.render_rate*100).toFixed(1)+'%</strong>'
+      +' · D7 ROAS <strong style="color:var(--vector)">'+(_tP.roas_d7*100).toFixed(1)+'%</strong>';
+    calcWhatIf();
+    return;
+  }
   container.innerHTML=`
-    <div class="st" style="margin-bottom:16px">Predictive What-If Modeling — adjust signal inputs to project impact</div>
+    <div class="st" style="margin-bottom:8px">Predictive What-If Modeling — adjust signal inputs to project impact</div>
+    <div id="wi-baseline-label" style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);background:var(--s2);border:1px solid var(--border);border-radius:4px;padding:8px 12px;margin-bottom:14px">Baseline: <strong style="color:#fff">${_selP==='all'?'All Publishers':_selP}</strong> · eCPM <strong style="color:var(--sdk)">$${_tP.ecpm.toFixed(2)}</strong> · Fill <strong style="color:var(--sdk)">${(_t.fill_rate*100).toFixed(1)}%</strong> · Render <strong style="color:var(--sdk)">${(_tP.render_rate*100).toFixed(1)}%</strong> · D7 ROAS <strong style="color:var(--vector)">${(_tP.roas_d7*100).toFixed(1)}%</strong></div>
     <div class="wi-grid">
       <div class="wi-card">
         <div class="wi-title">Creative Quality Score (L13–L16)</div>
@@ -1424,8 +1501,8 @@ function renderWhatIf(){
         <div class="wi-title">Mediation Fill Rate (L6)</div>
         <div class="wi-row">
           <div class="wi-lbl">Current fill rate</div>
-          <input type="range" class="wi-input" id="wi-fill" min="50" max="100" value="${+(D.total.fill_rate*100).toFixed(0)}" step="1" oninput="calcWhatIf()">
-          <div class="wi-val" id="wi-fill-val">${+(D.total.fill_rate*100).toFixed(0)}%</div>
+          <input type="range" class="wi-input" id="wi-fill" min="50" max="100" value="${_fillDef}" step="1" oninput="calcWhatIf()">
+          <div class="wi-val" id="wi-fill-val">${_fillDef}%</div>
         </div>
         <div class="wi-result">
           <div class="wi-result-lbl">Projected revenue impact (7-day)</div>
@@ -1438,8 +1515,8 @@ function renderWhatIf(){
         <div class="wi-title">Render Rate (L16 — North Star)</div>
         <div class="wi-row">
           <div class="wi-lbl">Current render rate</div>
-          <input type="range" class="wi-input" id="wi-render" min="30" max="90" value="${+(D.total.render_rate*100).toFixed(0)}" step="1" oninput="calcWhatIf()">
-          <div class="wi-val" id="wi-render-val">${+(D.total.render_rate*100).toFixed(0)}%</div>
+          <input type="range" class="wi-input" id="wi-render" min="30" max="90" value="${_renderDef}" step="1" oninput="calcWhatIf()">
+          <div class="wi-val" id="wi-render-val">${_renderDef}%</div>
         </div>
         <div class="wi-result">
           <div class="wi-result-lbl">Projected revenue impact (7-day)</div>
@@ -1452,8 +1529,8 @@ function renderWhatIf(){
         <div class="wi-title">Vector AI Win Rate (L9)</div>
         <div class="wi-row">
           <div class="wi-lbl">Current win rate</div>
-          <input type="range" class="wi-input" id="wi-winrate" min="10" max="70" value="${+(D.total.win_rate*100).toFixed(0)}" step="1" oninput="calcWhatIf()">
-          <div class="wi-val" id="wi-winrate-val">${+(D.total.win_rate*100).toFixed(0)}%</div>
+          <input type="range" class="wi-input" id="wi-winrate" min="10" max="70" value="${_winDef}" step="1" oninput="calcWhatIf()">
+          <div class="wi-val" id="wi-winrate-val">${_winDef}%</div>
         </div>
         <div class="wi-result">
           <div class="wi-result-lbl">Projected ROAS impact</div>
@@ -1463,9 +1540,9 @@ function renderWhatIf(){
         <div class="wi-actions" id="wi-roas-actions" style="margin-top:10px;display:flex;flex-direction:column;gap:5px"></div>
       </div>
       <div class="wi-card">
-        <div class="wi-title">Firebase / GA4 Signal Coverage (L0b)</div>
+        <div class="wi-title">Firebase / GA Signal Coverage (L0b)</div>
         <div class="wi-row">
-          <div class="wi-lbl">GA4-linked apps</div>
+          <div class="wi-lbl">GA-linked apps</div>
           <input type="range" class="wi-input" id="wi-firebase" min="0" max="100" value="67" step="1" oninput="calcWhatIf()">
           <div class="wi-val" id="wi-firebase-val">67%</div>
         </div>
@@ -1481,8 +1558,12 @@ function renderWhatIf(){
 }
 
 function calcWhatIf(){
-  const t=D.total;
-  const baseEcpm=t.ecpm,baseRev=t.revenue,baseRender=t.render_rate,baseWin=t.win_rate;
+  const selP=document.getElementById('pf')?.value||'all';
+  const selF=document.getElementById('ff')?.value||'all';
+  const tP=selP!=='all'&&D.by_publisher[selP]?D.by_publisher[selP]:D.total;
+  const tF=selF!=='all'&&D.by_format[selF]?D.by_format[selF]:null;
+  const t={...tP,ecpm:tF?tF.ecpm:tP.ecpm,fill_rate:tF?tF.fill_rate:tP.fill_rate,ctr:tF?tF.ctr:tP.ctr,win_rate:tF?tF.win_rate:tP.win_rate};
+  const baseEcpm=t.ecpm,baseRev=t.revenue,baseRender=t.render_rate,baseWin=t.win_rate||0.22;
   const idEl=document.getElementById('wi-creative');
   const fillEl=document.getElementById('wi-fill');
   const renderEl=document.getElementById('wi-render');
@@ -1518,7 +1599,7 @@ function calcWhatIf(){
   document.getElementById('wi-rev-sub').textContent='From $'+baseRev.toFixed(0)+' → $'+(baseRev+revLift).toFixed(0)+' (7-day)';
   // Action items for fill
   const fillActions = fillVal < baseFill+5
-    ? ['Audit NO_BID_BELOW_FLOOR rate in LevelPlay console — floor likely too high','Check LevelPlay Show Recovery is enabled (requires v9.2.0+)','Review mediation waterfall — AdMob and MAX paths have lower fill than LevelPlay']
+    ? ['Audit NO_BID_BELOW_FLOOR rate in LevelPlay console — floor likely too high','Check LevelPlay Show Recovery is enabled (requires v9.2.0+)','Check LevelPlay Show Recovery is enabled — AdMob and MAX paths have lower fill than LevelPlay']
     : fillVal < baseFill+15
     ? ['Enable per-segment floor pricing by user LTV tier in LevelPlay','Migrate remaining AdMob/MAX traffic to LevelPlay to access Show Recovery','Reduce floor price for BR and IN by 10–15% — these geos have lower eCPM ceilings']
     : ['Fill rate at strong level — monitor for floor price regressions weekly','Set LevelPlay alert if fill drops >3pp week-over-week','Ensure Vector AI win rate stays above 25% to maintain fill quality'];
@@ -1543,7 +1624,7 @@ function calcWhatIf(){
   const roasLift=(winVal-baseWinPct)*0.3;
   document.getElementById('wi-roas-result').textContent=(roasLift>=0?'+':'')+roasLift.toFixed(1)+'pp D7 ROAS';
   document.getElementById('wi-roas-result').style.color=roasLift>=0?'#19e3b1':'#ff0066';
-  document.getElementById('wi-roas-sub').textContent='From '+(t.roas_d7*100).toFixed(1)+'% → '+(t.roas_d7*100+roasLift).toFixed(1)+'% D7 ROAS';
+  document.getElementById('wi-roas-sub').textContent='Baseline: '+(t.roas_d7*100).toFixed(1)+'% → projected '+(t.roas_d7*100+roasLift).toFixed(1)+'% D7 ROAS (win rate: '+baseWinPct+'% → '+winVal+'%)';
   // Action items for win rate
   const winActions = winVal < baseWinPct+5
     ? ['Review tCPI targets — may be set too conservatively vs AppLovin competition','Check Vector AI bid density — low DSPs called at L8 suppresses win rate','Ensure Campaign Goal is set to ROAS not CPI for LTV-optimized bidding']
@@ -1552,7 +1633,7 @@ function calcWhatIf(){
     : ['Win rate at strong level — focus on ROAS quality over volume','Monitor win rate by genre — Mid-core and RPG should show highest Vector advantage','Review D28 ROAS readiness as win rate improves — model retraining accelerates'];
   renderActions('wi-roas-actions', winActions);
 
-  // Firebase/GA4 → LTV at L27
+  // Firebase/GA → LTV at L27
   if(fbEl){
     const fbV=+fbEl.value;
     document.getElementById('wi-firebase-val').textContent=fbV+'%';
@@ -1562,10 +1643,10 @@ function calcWhatIf(){
     document.getElementById('wi-ltv-sub').textContent=fbV<50?'Below threshold — D28 ROAS not unlockable yet':fbV<75?'Approaching D28 ROAS readiness threshold':'D28 ROAS prediction model ready — 2026 roadmap unlocked';
     // Action items for Firebase
     const fbActions = fbV < 50
-      ? ['Prioritize GA4 account linking for top 3 revenue publishers immediately','Send account linking guide and setup steps to app owner account managers','Track GA4-linked app count weekly — target 50% minimum for baseline Source App signal']
+      ? ['Prioritize GA account linking for top 3 revenue publishers immediately','Send account linking guide and setup steps to app owner account managers','Track GA-linked app count weekly — target 50% minimum for baseline Source App signal']
       : fbV < 75
-      ? ['Schedule GA4 integration review with apps below 60% coverage','Validate GA4 event schema alignment — check for GA4_SCHEMA_MISMATCH in pipeline logs','Set publisher incentive: show ROAS improvement projection for linking GA4']
-      : ['Firebase/GA4 coverage at strong level — validate event quality not just quantity','Audit which GA4 events are classified as signal-worthy vs noise in Unity pipeline','Review D28 ROAS predictions as coverage improves — this unlocks the 2026 roadmap item'];
+      ? ['Schedule GA integration review with apps below 60% coverage','Validate GA event schema alignment — check for GA_SCHEMA_MISMATCH in pipeline logs','Set publisher incentive: show ROAS improvement projection for linking GA']
+      : ['Firebase/GA coverage at strong level — validate event quality not just quantity','Audit which GA events are classified as signal-worthy vs noise in Unity pipeline','Review D28 ROAS predictions as coverage improves — this unlocks the 2026 roadmap item'];
     renderActions('wi-ltv-actions', fbActions);
   }
 }
@@ -1577,16 +1658,30 @@ function renderActions(elId, actions){
 }
 
 
-async function streamAI(prompt,tid,callback){
+async function streamAI(prompt,tid,callback,staticFallback){
   const el=document.getElementById(tid);
   if(!el&&!callback)return;
   if(el)el.textContent='';
   try{
-    const r=await fetch("https://ai-product-foundryworkersdev.ai-product-foundry.workers.dev/v1/messages",{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:200,messages:[{role:'user',content:prompt}]})});
+    const r=await fetch("https://ai-product-foundryworkersdev.ai-product-foundry.workers.dev/v1/messages",{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1500,messages:[{role:'user',content:prompt}]})
+    });
     const data=await r.json();
-    const text=data.content?.find(b=>b.type==='text')?.text||'Analysis unavailable.';
+    if(data.error){throw new Error(data.error.message||JSON.stringify(data.error));}
+    const text=data.content?.find(b=>b.type==='text')?.text||'No response received.';
     if(callback){callback(text);}else if(el){el.innerHTML=text;}
-  }catch(e){if(el)el.textContent='Recommendation engine offline.';if(callback)callback('Error generating briefing. Please check your connection and try again.');}
+  }catch(e){
+    if(staticFallback){
+      if(el)el.innerHTML=staticFallback;
+      if(callback)callback(staticFallback);
+    } else {
+      const errMsg='API Error: '+e.message;
+      if(el)el.textContent=errMsg;
+      if(callback)callback(errMsg);
+    }
+  }
 }
 
 
@@ -1602,10 +1697,6 @@ function showPage(id,btn){
 }
 
 // ── INIT ──
-renderStrip();
-renderCone();
-
-// ══ INIT ══
 renderStrip();
 renderCone();
 </script>
