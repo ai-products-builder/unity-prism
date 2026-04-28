@@ -1095,6 +1095,9 @@ function renderBriefing(){
 }
 
 function generateBriefing(){
+  const _n=new Date();_n.setDate(_n.getDate()-1);
+  const _s=new Date(_n);_s.setDate(_n.getDate()-6);
+  const _mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const pub = document.getElementById('brief-pub')?.value || 'all';
   const type = document.getElementById('brief-type')?.value || 'weekly';
   const audience = document.getElementById('brief-audience')?.value || 'pm';
@@ -1150,9 +1153,7 @@ Structure it with clear sections using headers. Include:
 Tone: direct and specific. Reference actual numbers. No generic advice. No mention of competitors by name — refer to them as "external DSPs". Write in flowing professional prose under each header, not bullet points. Maximum 400 words. Make it something a PM could genuinely send to a publisher account manager or bring into a weekly review meeting.`;
 
   streamAI(prompt, null, (text) => {
-    const _n=new Date();_n.setDate(_n.getDate()-1);const _s=new Date(_n);_s.setDate(_n.getDate()-6);
-    const _mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    const date=_mo[_s.getMonth()]+' '+_s.getDate()+'–'+_mo[_n.getMonth()]+' '+_n.getDate()+', '+_n.getFullYear();
+      const date=_mo[_s.getMonth()]+' '+_s.getDate()+'–'+_mo[_n.getMonth()]+' '+_n.getDate()+', '+_n.getFullYear();
     outputEl.innerHTML = `
       <div class="bo-head">
         <div class="bo-head-title">${typeLabels[type]} — ${pub === 'all' ? 'All Publishers' : pub}</div>
