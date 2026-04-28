@@ -334,7 +334,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 28px
   </div>
   <div class="nav-right">
     <div class="live-dot"></div>
-    <div class="date-badge" id="date-badge">Apr 22–Apr 28 2026 · 1,008 records</div>
+    <div class="date-badge" id="date-badge">Apr 21–Apr 27 2026 · 1,008 records</div>
   </div>
 </nav>
 
@@ -1150,7 +1150,7 @@ Structure it with clear sections using headers. Include:
 Tone: direct and specific. Reference actual numbers. No generic advice. No mention of competitors by name — refer to them as "external DSPs". Write in flowing professional prose under each header, not bullet points. Maximum 400 words. Make it something a PM could genuinely send to a publisher account manager or bring into a weekly review meeting.`;
 
   streamAI(prompt, null, (text) => {
-    const _n=new Date(),_s=new Date(_n);_s.setDate(_n.getDate()-6);
+    const _n=new Date();_n.setDate(_n.getDate()-1);const _s=new Date(_n);_s.setDate(_n.getDate()-6);
     const _mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     const date=_mo[_s.getMonth()]+' '+_s.getDate()+'–'+_mo[_n.getMonth()]+' '+_n.getDate()+', '+_n.getFullYear();
     outputEl.innerHTML = `
@@ -1702,7 +1702,7 @@ function showPage(id,btn){
 renderStrip();
 renderCone();
 // update date badge daily
-(function(){var n=new Date(),s=new Date(n);s.setDate(n.getDate()-6);var mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];var f=function(d){return mo[d.getMonth()]+' '+d.getDate();};var el=document.getElementById('date-badge');if(el)el.textContent=f(s)+'–'+f(n)+' '+n.getFullYear()+' · 1,008 records';})();
+(function(){var e=new Date();e.setDate(e.getDate()-1);var s=new Date(e);s.setDate(e.getDate()-6);var mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];var f=function(d){return mo[d.getMonth()]+' '+d.getDate();};var el=document.getElementById('date-badge');if(el)el.textContent=f(s)+'–'+f(e)+' '+e.getFullYear()+' · 1,008 records';})();
 </script>
 </body>
 </html>
